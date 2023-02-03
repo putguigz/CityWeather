@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <cpr/cpr.h>
 #include "ApiRequester.hpp"
 
 using namespace std;
@@ -26,6 +26,13 @@ using namespace std;
 // }
 
 int main(void){
+    cpr::Response r = cpr::Get(cpr::Url{"https://api.github.com/repos/libcpr/cpr/contributors"},
+                      cpr::Authentication{"user", "pass", cpr::AuthMode::BASIC},
+                      cpr::Parameters{{"anon", "true"}, {"key", "value"}});
+    r.status_code;                  // 200
+    r.header["content-type"];       // application/json; charset=utf-8
+    r.text;                         // JSON text string
+    std::cout << r.status_code << std::endl;
     // curl_init();
     
     // string inputCity = user_input(void);
