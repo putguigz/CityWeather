@@ -6,7 +6,9 @@ include_directories("includes")
 
 set(SOURCES 
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/main.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/srcs/ApiRequester.cpp")
+    "${CMAKE_CURRENT_SOURCE_DIR}/srcs/ApiRequester.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/srcs/FetchDataException.cpp"
+    )
 
 
 include(FetchContent)

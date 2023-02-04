@@ -1,5 +1,8 @@
 #include <sstream>
+#include <cpr/cpr.h>
+
 #include "ApiRequester.hpp"
+#include "FetchDataException.hpp"
 
 // Constructors
 
@@ -44,27 +47,24 @@ void    ApiRequester::pushQueryParameter(string key, string value){
     _queryParameters.insert(std::pair<string, string>(key, value));
 }
 
-string    ApiRequester::generateRequestUrl( void ) const {
-    string stringifiedParameters;
+cpr::Parameters ApiRequester::generateParameters( void ) const{
+    cpr::Parameters parameters;
 
-    for (paramIterator it = _queryParameters.cbegin(); it != _queryParameters.cend(); it++){
-        std::stringstream keyValue;
-        keyValue << it->first + '=' + it->second + '&';
-        
-        stringifiedParameters += keyValue.str();
-    }
-    return (_url + '?' + stringifiedParameters);
+    for (paramIterator it = _queryParameters.cbegin(); it != _queryParameters.cend(); it++)
+        parameters.Add({it->first, it->second});
+    return parameters;
 }
 
 string  ApiRequester::emitRequest( void ) const {
-	std::stringstream response;
-    // cURLpp::Easy myRequest;
+    cpr::Response   response;
+    cpr::Parameters parameters = generateParameters();
 
-	// myRequest.setOpt<cURLpp::options::Url>(this->generateRequestUrl());
-    // myRequest.setOpt(curlpp::options::WriteStream( &response ));
-    // myRequest.perform();
-
-    return response.str();
+    response = cpr::Get(cpr::Url{_url}, parameters);
+    std::cout << response.url << std::endl;
+    if (response.status_code >= 400)
+        throw FetchDataException(_url);
+    std::cerr << response.status_code << std::endl;
+    return response.text;
 }
 
 // Operators

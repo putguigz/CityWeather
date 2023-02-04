@@ -4,6 +4,7 @@
 # include <iostream>
 # include <string>
 # include <map>
+# include <cpr/cpr.h>
 
 using namespace std;
 
@@ -27,12 +28,12 @@ class ApiRequester
 		void								setQueryParameters(map<string, string> const & newParam);
 
 		void			pushQueryParameter(string key, string value);
-		string			generateRequestUrl( void ) const;
-		string		emitRequest( void ) const;
+		cpr::Parameters generateParameters( void ) const;
+		string			emitRequest( void ) const;
 
 	private:
 		string						_url;
-		map<string, string>	_queryParameters;
+		map<string, string>			_queryParameters;
 };
 
 #endif
