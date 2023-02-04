@@ -13,6 +13,8 @@ set(SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/City.cpp"
     )
 
+set_source_files_properties($(SOURCES) PROPERTIES COMPILE_OPTIONS "-Wall;-Wextra;-Werror")
+
 
 include(FetchContent)
 
@@ -36,3 +38,4 @@ target_link_libraries( CityWeather PRIVATE nlohmann_json::nlohmann_json)
 
 set_property(TARGET CityWeather PROPERTY CXX_STANDARD 11)
 set_property(TARGET CityWeather PROPERTY CXX_STANDARD_REQUIRED ON)
+

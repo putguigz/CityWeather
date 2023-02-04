@@ -4,23 +4,25 @@
 # include "ApiRequester.hpp"
 # include "City.hpp"
 
-//CHANGE WHEN MANUALLY ADDING SIZE
 # define DAILYFIELDS_SIZE 4
 
 class OpenMeteoApi : public ApiRequester {
     public:
-        static const char *dailyFields[] = {       
-        "temperature_2m_max",
-        "temperature_2m_min",
-        "precipitation_sum",
-        "weathercode"
-        };
+        static const char *dailyFields[DAILYFIELDS_SIZE];
 
-        std::string search(City const &city);
+		OpenMeteoApi( void );
+		OpenMeteoApi( OpenMeteoApi const & src );
+        OpenMeteoApi( string const & url );
+		OpenMeteoApi( const char url[] );
+        virtual ~OpenMeteoApi( void );
+
+        OpenMeteoApi &operator=(OpenMeteoApi const & src);
+        
+        void        addSpecificParameters(City const &city);
         void        convertJsonResponseToMap( void );
 
     private:
         std::string aggregateDailyFields( void );
-}
+};
 
 #endif

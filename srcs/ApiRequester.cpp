@@ -11,7 +11,12 @@ ApiRequester::ApiRequester( void )
     
 }
 
-ApiRequester::ApiRequester( string url) : _url(url)
+ApiRequester::ApiRequester( const char url[] )
+{
+    _url = string(url);
+}
+
+ApiRequester::ApiRequester( string const &url) : _url(url)
 {
 }
 
@@ -33,6 +38,15 @@ string const	&ApiRequester::getUrl(void) const{
 void			ApiRequester::setUrl(string newUrl){
     _url = newUrl;
 }
+
+string const	&ApiRequester::getResponseBody(void) const{
+    return _response_body;
+}
+
+void			ApiRequester::setResponseBody( string newResponse ){
+    _response_body = newResponse;
+}
+
 
 std::map<string, string> const	&ApiRequester::getQueryParameters(void) const{
     return _queryParameters;

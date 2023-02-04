@@ -1,15 +1,29 @@
 # include "OpenMeteoApi.hpp"
 
-std::string OpenMeteoApi::search(City const &city){
-    string requestedFields;
 
-    this.pushQueryParameter("latitude", city.getLatitude());
-    this.pushQueryParameter("longitude", city.getLongitude());
-    this.pushQueryParameter("timezone", city.getTimezone());
-    this.pushQueryParameter("daily", city.getTimezone());
+const char *OpenMeteoApi::dailyFields[DAILYFIELDS_SIZE] = {       
+        "temperature_2m_max",
+        "temperature_2m_min",
+        "precipitation_sum",
+        "weathercode"
+        };
 
-    std::string httpResponse = this.Get();
-    return httpResponse;
+OpenMeteoApi::OpenMeteoApi( void ){}
+OpenMeteoApi::OpenMeteoApi( OpenMeteoApi const & src ) : ApiRequester(src){}
+OpenMeteoApi::OpenMeteoApi( string const & url ) : ApiRequester(url){}
+OpenMeteoApi::OpenMeteoApi( const char url[] ) : ApiRequester(url) {}
+OpenMeteoApi::~OpenMeteoApi( void ){}
+
+OpenMeteoApi &OpenMeteoApi::operator=(OpenMeteoApi const & src){
+    ApiRequester::operator=(src);
+    return *this;
+}
+
+void OpenMeteoApi::addSpecificParameters(City const &city){
+    this->pushQueryParameter("latitude", city.getLatitude());
+    this->pushQueryParameter("longitude", city.getLongitude());
+    this->pushQueryParameter("timezone", city.getTimezone());
+    this->pushQueryParameter("daily", this->aggregateDailyFields());
 }
 
 std::string OpenMeteoApi::aggregateDailyFields( void ){
@@ -21,6 +35,6 @@ std::string OpenMeteoApi::aggregateDailyFields( void ){
 }
 
 //TODO
-void   GeoCodeApi::convertJsonResponseToMap( void ) {
+void   OpenMeteoApi::convertJsonResponseToMap( void ) {
    return ;
 }

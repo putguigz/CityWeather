@@ -15,7 +15,8 @@ class ApiRequester
 {
 	public:
 		ApiRequester( void );
-		ApiRequester( string url );
+		ApiRequester( const char url[] );
+		ApiRequester( string const & url );
 		ApiRequester( const ApiRequester &copy );
 		virtual ~ApiRequester();
 		
@@ -30,16 +31,16 @@ class ApiRequester
 		void								setQueryParameters(map<string, string> const & newParam);
 
 		string const 	&Get( void );
-		virtual void	search() = 0;
-		virtual void	convertJsonResponseToMap() = 0;
+
+	protected:
+		void			pushQueryParameter(string key, string value);
 
 	private:
 		string						_url;
 		string						_response_body;
 		map<string, string>			_queryParameters;
+		cpr::Parameters 			generateParameters( void ) const;
 
-		void			pushQueryParameter(string key, string value);
-		cpr::Parameters generateParameters( void ) const;
 };
 
 #endif

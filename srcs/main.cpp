@@ -6,9 +6,11 @@
 #include "GeoCodeApi.hpp"
 #include "OpenMeteoApi.hpp"
 
+# define GEOCODE_URL "https://geocoding-api.open-meteo.com/v1/search"
+# define OPENMETEO_URL "https://api.open-meteo.com/v1/forecast"
+
 // for convenience
 using namespace std;
-using json = nlohmann::json;
 
 //TODO DELETE WHEN APP GETS GRAPHICAL
 static string user_input(void){
@@ -22,8 +24,12 @@ static string user_input(void){
 int main(void){
     string inputCity = user_input();
 
-    // auto resultCities = jsonToCities(httpResponse);
-    // for (citiesIterator it = resultCities.cbegin(); it!= resultCities.cend(); it++){
-    //     cout << *it << std::endl;
-    // }
+    GeoCodeApi      request(GEOCODE_URL);
+    request.addSpecificParameters(inputCity);
+    request.Get();
+
+    auto resultCities = request.convertJsonResponseToMap();
+    for (citiesIterator it = resultCities.cbegin(); it!= resultCities.cend(); it++){
+        cout << *it << std::endl;
+    }
 }

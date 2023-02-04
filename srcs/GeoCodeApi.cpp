@@ -1,17 +1,28 @@
 #include <nlohmann/json.hpp>
 #include "GeoCodeApi.hpp"
 
-void GeoCodeApi::search(string const &inputCity){
-    this.pushQueryParameter("name", inputCity);
-    this.pushQueryParameter("count", "10");
-    
-    //TODO protect against no URL
-    this.Get();
+using json = nlohmann::json;
+
+GeoCodeApi::GeoCodeApi( void ){}
+GeoCodeApi::GeoCodeApi( GeoCodeApi const & src ) : ApiRequester(src){}
+GeoCodeApi::GeoCodeApi( string const & url ) : ApiRequester(url){}
+GeoCodeApi::GeoCodeApi( const char url[] ) : ApiRequester(url) {}
+GeoCodeApi::~GeoCodeApi( void ){}
+
+GeoCodeApi &GeoCodeApi::operator=(GeoCodeApi const & src){
+    ApiRequester::operator=(src);
+    return *this;
+}
+
+
+void GeoCodeApi::addSpecificParameters(string const &inputCity){
+    this->pushQueryParameter("name", inputCity);
+    this->pushQueryParameter("count", "10");
 }
 
 std::vector<City>   GeoCodeApi::convertJsonResponseToMap( void ) {
     std::vector<City> resultCities;
-    json Hello = json::parse(httpResponse);
+    json Hello = json::parse(this->getResponseBody());
 
     for (auto it : Hello.at("results")){
         City newCity;
