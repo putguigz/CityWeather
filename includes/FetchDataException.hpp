@@ -1,7 +1,5 @@
 #ifndef FETCHDATAEXCEPTION_HPP
-#define FETCHDATAEXCEPTION_HPP
-
-#pragma once
+# define FETCHDATAEXCEPTION_HPP
 
 # include <exception>
 # include <string>

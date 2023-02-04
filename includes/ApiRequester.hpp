@@ -24,16 +24,22 @@ class ApiRequester
 		
 		string const						&getUrl( void ) const;
 		void								setUrl( string newUrl );
+		string const						&getResponseBody( void ) const;
+		void								setResponseBody( string newUrl );
 		map<string, string> const			&getQueryParameters(void) const;
 		void								setQueryParameters(map<string, string> const & newParam);
 
-		void			pushQueryParameter(string key, string value);
-		cpr::Parameters generateParameters( void ) const;
-		string			emitRequest( void ) const;
+		string const 	&Get( void );
+		virtual void	search() = 0;
+		virtual void	convertJsonResponseToMap() = 0;
 
 	private:
 		string						_url;
+		string						_response_body;
 		map<string, string>			_queryParameters;
+
+		void			pushQueryParameter(string key, string value);
+		cpr::Parameters generateParameters( void ) const;
 };
 
 #endif

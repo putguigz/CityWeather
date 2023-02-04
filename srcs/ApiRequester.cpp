@@ -55,16 +55,16 @@ cpr::Parameters ApiRequester::generateParameters( void ) const{
     return parameters;
 }
 
-string  ApiRequester::emitRequest( void ) const {
+string const &ApiRequester::Get( void ) {
     cpr::Response   response;
     cpr::Parameters parameters = generateParameters();
 
-    response = cpr::Get(cpr::Url{_url}, parameters);
-    std::cout << response.url << std::endl;
+    response = cpr::Get(cpr::Url{_url}, parameters);    
     if (response.status_code >= 400)
         throw FetchDataException(_url);
-    std::cerr << response.status_code << std::endl;
-    return response.text;
+    
+    _response_body = response.text;
+    return _response_body;
 }
 
 // Operators
@@ -72,6 +72,7 @@ ApiRequester & ApiRequester::operator=(const ApiRequester &cpy)
 {
 	if (this != &cpy){
         _url = cpy.getUrl();
+        _response_body = cpy.getResponseBody();
         _queryParameters = cpy.getQueryParameters();
     }
 	return *this;
