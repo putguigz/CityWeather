@@ -11,6 +11,7 @@ set(SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/OpenMeteoApi.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/FetchDataException.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/City.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/srcs/MeteoTile.cpp"
     )
 
 set_source_files_properties($(SOURCES) PROPERTIES COMPILE_OPTIONS "-Wall;-Wextra;-Werror")

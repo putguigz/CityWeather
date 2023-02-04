@@ -14,7 +14,7 @@ class City
 		// Constructors
 		City( void );
 		City(const City &copy);
-		City(string name, string locality, string country, string latitude, string longitude);
+		City(string name, string locality, string country, string latitude, string longitude, string timezone);
 		
 		// Destructor
 		virtual ~City();

@@ -6,8 +6,8 @@
 #include "GeoCodeApi.hpp"
 #include "OpenMeteoApi.hpp"
 
-# define GEOCODE_URL "https://geocoding-api.open-meteo.com/v1/search"
-# define OPENMETEO_URL "https://api.open-meteo.com/v1/forecast"
+# define GEOCODE_URL    "https://geocoding-api.open-meteo.com/v1/search"
+# define OPENMETEO_URL  "https://api.open-meteo.com/v1/forecast"
 
 // for convenience
 using namespace std;

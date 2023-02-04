@@ -8,13 +8,20 @@ City::City(const City &copy){
 	*this = copy;
 }
 
-City::City(string name, string locality, string country, string latitude, string longitude)
+City::City(
+	string name,
+	string locality,
+	string country,
+	string latitude,
+	string longitude,
+	string timezone)
 {
 	_name = name;
 	_locality = locality;
 	_country = country;
 	_latitude = latitude;
 	_longitude = longitude;
+	_timezone = timezone;
 }
 
 
@@ -34,6 +41,7 @@ City & City::operator=(const City &assign)
 		_country = assign.getCountry();
 		_latitude = assign.getLatitude();
 		_longitude = assign.getLongitude();
+		_timezone = assign.getTimezone();
 	}
 	return *this;
 }
