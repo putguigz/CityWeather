@@ -4,13 +4,15 @@
 # include <iostream>
 # include <string>
 
+using namespace std;
+
 class MeteoTile
 {
 	public:
 		// Constructors
 		MeteoTile();
 		MeteoTile(const MeteoTile &copy);
-		MeteoTile(string _temperature, string _minTemperature, string _maxTemperature, string _precipitation, string _weatherCode);
+		MeteoTile(string temperature, string minTemperature, string maxTemperature, string precipitation, string weatherCode);
 		
 		// Destructor
 		~MeteoTile();
@@ -19,23 +21,29 @@ class MeteoTile
 		MeteoTile & operator=(const MeteoTile &assign);
 		
 		// Getters / Setters
-		string get_temperature() const;
-		void set_temperature(string _temperature);
-		string get_minTemperature() const;
-		void set_minTemperature(string _minTemperature);
-		string get_maxTemperature() const;
-		void set_maxTemperature(string _maxTemperature);
-		string get_precipitation() const;
-		void set_precipitation(string _precipitation);
-		string get_weatherCode() const;
-		
+		string	getTemperature() const;
+		void	setTemperature(string temperature);
+
+		string	getMinTemperature() const;
+		void	setMinTemperature(string minTemperature);
+
+		string	getMaxTemperature() const;
+		void	setMaxTemperature(string maxTemperature);
+
+		string	getPrecipitation() const;
+		void	setPrecipitation(string precipitation);
+
+		string	getWeatherCode() const;
+		void	setWeatherCode(string weatherCode);
+
 	private:
-		string __temperature;
-		string __minTemperature;
-		string __maxTemperature;
-		string __precipitation;
-		string __weatherCode;
-		
+		string _temperature;
+		string _minTemperature;
+		string _maxTemperature;
+		string _precipitation;
+		string _weatherCode;
+
+		void	dailyAverageTemperature(void);
 };
 
 // Stream operators

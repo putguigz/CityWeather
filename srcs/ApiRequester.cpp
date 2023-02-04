@@ -65,17 +65,25 @@ cpr::Parameters ApiRequester::generateParameters( void ) const{
     cpr::Parameters parameters;
 
     for (paramIterator it = _queryParameters.cbegin(); it != _queryParameters.cend(); it++)
+    { 
         parameters.Add({it->first, it->second});
+    }
     return parameters;
 }
 
 string const &ApiRequester::Get( void ) {
     cpr::Response   response;
     cpr::Parameters parameters = generateParameters();
-
-    response = cpr::Get(cpr::Url{_url}, parameters);    
+    parameters.encode = false;
+    
+    //TODO BETTER MANAGE ERRORS
+    response = cpr::Get(cpr::Url{_url}, parameters);
+    cerr << response.url << std::endl;
     if (response.status_code >= 400)
+    {
+        cerr << response.text << std::endl;
         throw FetchDataException(_url);
+    }
     
     _response_body = response.text;
     return _response_body;

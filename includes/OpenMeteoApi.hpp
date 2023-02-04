@@ -3,6 +3,7 @@
 
 # include "ApiRequester.hpp"
 # include "City.hpp"
+# include "MeteoTile.hpp"
 
 # define DAILYFIELDS_SIZE 4
 
@@ -18,11 +19,11 @@ class OpenMeteoApi : public ApiRequester {
 
         OpenMeteoApi &operator=(OpenMeteoApi const & src);
         
-        void        addSpecificParameters(City const &city);
-        void        convertJsonResponseToMap( void );
+        void                    addSpecificParameters(City const &city);
+        std::vector<MeteoTile>  convertJsonResponseToMap( void );
 
     private:
-        std::string aggregateDailyFields( void );
+        std::string             aggregateDailyFields( void );
 };
 
 #endif

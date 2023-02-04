@@ -3,29 +3,29 @@
 // Constructors
 MeteoTile::MeteoTile()
 {
-	__temperature = "";
-	__minTemperature = "";
-	__maxTemperature = "";
-	__precipitation = "";
-	__weatherCode = "";
+	_temperature = "";
+	_minTemperature = "";
+	_maxTemperature = "";
+	_precipitation = "";
+	_weatherCode = "";
 }
 
 MeteoTile::MeteoTile(const MeteoTile &copy)
 {
-	__temperature = copy.get_temperature();
-	__minTemperature = copy.get_minTemperature();
-	__maxTemperature = copy.get_maxTemperature();
-	__precipitation = copy.get_precipitation();
-	__weatherCode = copy.get_weatherCode();
+	_temperature = copy.getTemperature();
+	_minTemperature = copy.getMinTemperature();
+	_maxTemperature = copy.getMaxTemperature();
+	_precipitation = copy.getPrecipitation();
+	_weatherCode = copy.getWeatherCode();
 }
 
 MeteoTile::MeteoTile(string _temperature, string _minTemperature, string _maxTemperature, string _precipitation, string _weatherCode)
 {
-	__temperature = _temperature;
-	__minTemperature = _minTemperature;
-	__maxTemperature = _maxTemperature;
-	__precipitation = _precipitation;
-	__weatherCode = _weatherCode;
+	_temperature = _temperature;
+	_minTemperature = _minTemperature;
+	_maxTemperature = _maxTemperature;
+	_precipitation = _precipitation;
+	_weatherCode = _weatherCode;
 }
 
 
@@ -38,61 +38,65 @@ MeteoTile::~MeteoTile()
 // Operators
 MeteoTile & MeteoTile::operator=(const MeteoTile &assign)
 {
-	__temperature = assign.get_temperature();
-	__minTemperature = assign.get_minTemperature();
-	__maxTemperature = assign.get_maxTemperature();
-	__precipitation = assign.get_precipitation();
-	__weatherCode = assign.get_weatherCode();
+	_temperature = assign.getTemperature();
+	_minTemperature = assign.getMinTemperature();
+	_maxTemperature = assign.getMaxTemperature();
+	_precipitation = assign.getPrecipitation();
+	_weatherCode = assign.getWeatherCode();
 	return *this;
 }
 
 
 // Getters / Setters
-string MeteoTile::get_temperature() const
+string MeteoTile::getTemperature() const
 {
-	return __temperature;
+	return _temperature;
 }
-void MeteoTile::set_temperature(string _temperature)
+void MeteoTile::setTemperature(string newTemperature)
 {
-	__temperature = _temperature;
-}
-
-string MeteoTile::get_minTemperature() const
-{
-	return __minTemperature;
-}
-void MeteoTile::set_minTemperature(string _minTemperature)
-{
-	__minTemperature = _minTemperature;
+	_temperature = newTemperature;
 }
 
-string MeteoTile::get_maxTemperature() const
+string MeteoTile::getMinTemperature() const
 {
-	return __maxTemperature;
+	return _minTemperature;
 }
-void MeteoTile::set_maxTemperature(string _maxTemperature)
+void MeteoTile::setMinTemperature(string newMinTemperature)
 {
-	__maxTemperature = _maxTemperature;
-}
-
-string MeteoTile::get_precipitation() const
-{
-	return __precipitation;
-}
-void MeteoTile::set_precipitation(string _precipitation)
-{
-	__precipitation = _precipitation;
+	_minTemperature = newMinTemperature;
 }
 
-string MeteoTile::get_weatherCode() const
+string MeteoTile::getMaxTemperature() const
 {
-	return __weatherCode;
+	return _maxTemperature;
+}
+void MeteoTile::setMaxTemperature(string newMaxTemperature)
+{
+	_maxTemperature = newMaxTemperature;
+}
+
+string MeteoTile::getPrecipitation() const
+{
+	return _precipitation;
+}
+void MeteoTile::setPrecipitation(string newPrecipitation)
+{
+	_precipitation = newPrecipitation;
+}
+
+string MeteoTile::getWeatherCode() const
+{
+	return _weatherCode;
+}
+
+void	MeteoTile::setWeatherCode(string newWeatherCode){
+	_weatherCode = newWeatherCode;
 }
 
 
 // Stream operators
 std::ostream & operator<<(std::ostream &stream, const MeteoTile &object)
 {
-	stream << "Forecast :\nTemperature:" << object.get_temperature() << "\nMin:" << object.get_minTemperature() << "\nMax:" << object.get_maxTemperature() << "\nRain:" << object.get_precipitation() << "\nWeatherCode:" << object.get_weatherCode() << "" << std::endl;
+	stream << "Forecast :\nTemperature: " << object.getTemperature() << "॰C\nMin: " << object.getMinTemperature() << "॰C\nMax: " << object.getMaxTemperature() << "॰C\nRain: " << object.getPrecipitation() << "mm\nWeatherCode: " << object.getWeatherCode() << std::endl;
 	return stream;
 }
