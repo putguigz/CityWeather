@@ -6,6 +6,9 @@ RESET="\e[0m"
 
 program=./CityWeather
 
+# Libraries are imported through Cmake but GTK
+# might need installation through pkg dependency
+# sudo dnf install gtkmm4.0-devel
 
 if ! [[ -e $program ]]; then
     echo -e "Compiling With \e[33mMakefile...\e[0m"
