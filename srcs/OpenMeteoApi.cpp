@@ -7,8 +7,8 @@ using json = nlohmann::json;
 /*please, change DAILYFIELDS_SIZE in .hpp if you add 
 fields to dailyFields*/
 const char *OpenMeteoApi::dailyFields[DAILYFIELDS_SIZE] = {       
-        "temperature_2m_max",
         "temperature_2m_min",
+        "temperature_2m_max",
         "precipitation_sum",
         "weathercode"
         };
@@ -50,8 +50,8 @@ std::vector<MeteoTile>  OpenMeteoApi::convertJsonResponseToMap( void ) {
     
     int day = 0;
     for (auto it = sevenDaysMeteo.begin(); it != sevenDaysMeteo.end(); it++, day++){
-        MeteoTile dayForecast = *it;
-
+        MeteoTile &dayForecast = *it;
+        
         setClassWithJsonFieldArray<MeteoTile, float>("temperature_2m_min", sevenDayForecast, &dayForecast, day, &MeteoTile::setMinTemperature);
         setClassWithJsonFieldArray<MeteoTile, float>("temperature_2m_max", sevenDayForecast, &dayForecast, day, &MeteoTile::setMaxTemperature);
         setClassWithJsonFieldArray<MeteoTile, float>("precipitation_sum", sevenDayForecast, &dayForecast, day, &MeteoTile::setPrecipitation);

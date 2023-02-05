@@ -128,6 +128,6 @@ void	MeteoTile::setWeatherCode(int newWeatherCode){
 // Stream operators
 std::ostream & operator<<(std::ostream &stream, const MeteoTile &object)
 {
-	stream << "Forecast :\nTemperature: " << object.getTemperature() << "॰C\nMin: " << object.getMinTemperature() << "॰C\nMax: " << object.getMaxTemperature() << "॰C\nRain: " << object.getPrecipitation() << "mm\nWeatherCode: " << object.getWeatherCode() << std::endl;
+	stream << "Forecast :\nTemperature: " << object.getTemperature() << "॰C\nMin: " << object.getMinTemperature() << "॰C\nMax: " << object.getMaxTemperature() << "॰C\nRain: " << object.getPrecipitation() << "mm\nWeatherCode: " << MeteoTile::weatherInterpretationCodes.at(object.getWeatherCode()) << std::endl;
 	return stream;
 }
