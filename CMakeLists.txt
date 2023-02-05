@@ -14,9 +14,6 @@ set(SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/MeteoTile.cpp"
     )
 
-set_source_files_properties($(SOURCES) PROPERTIES COMPILE_OPTIONS "-Wall;-Wextra;-Werror")
-
-
 include(FetchContent)
 
 FetchContent_Declare(cpr 
@@ -34,6 +31,7 @@ FetchContent_MakeAvailable(json)
 
 add_executable( CityWeather ${SOURCES} )
 
+target_compile_options( CityWeather PRIVATE -Wall -Wextra -Werror)
 target_link_libraries( CityWeather PRIVATE cpr::cpr)
 target_link_libraries( CityWeather PRIVATE nlohmann_json::nlohmann_json)
 
