@@ -7,8 +7,7 @@
 // Constructors
 
 ApiRequester::ApiRequester( void )
-{
-    
+{  
 }
 
 ApiRequester::ApiRequester( const char url[] )
@@ -76,7 +75,6 @@ string const &ApiRequester::Get( void ) {
     cpr::Parameters parameters = generateParameters();
     parameters.encode = false;
     
-    //TODO BETTER MANAGE ERRORS
     response = cpr::Get(cpr::Url{_url}, parameters);
     if (response.status_code >= 400)
         throw FetchDataException(response);
