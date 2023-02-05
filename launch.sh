@@ -6,8 +6,6 @@ RESET="\e[0m"
 
 program=./CityWeather
 
-##Libraries (Should be adapted for any linux package manager)##
-sudo dnf install curlpp
 
 if ! [[ -e $program ]]; then
     echo -e "Compiling With \e[33mMakefile...\e[0m"

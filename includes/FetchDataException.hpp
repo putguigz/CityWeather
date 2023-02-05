@@ -6,18 +6,18 @@
 
 class FetchDataException : public std::exception
 {
-public:
-    FetchDataException( void );
-    FetchDataException( std::string );
-    virtual ~FetchDataException( void );
-    FetchDataException( FetchDataException const &src );
+    public:
+        FetchDataException( void );
+        FetchDataException( std::string );
+        virtual ~FetchDataException( void );
+        FetchDataException( FetchDataException const &src );
 
-    FetchDataException &operator=( FetchDataException const &src );
+        FetchDataException &operator=( FetchDataException const &src );
 
-    const char* what() const noexcept;
+        const char* what() const noexcept;
 
-private:
-    std::string      _url;
+    private:
+        std::string      _url;
 };
 
 #endif

@@ -12,6 +12,7 @@ set(SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/FetchDataException.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/City.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/MeteoTile.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/srcs/Logger.cpp"
     )
 
 include(FetchContent)

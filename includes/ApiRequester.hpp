@@ -10,7 +10,7 @@ using namespace std;
 
 typedef map<string, string>::const_iterator paramIterator;
 
-
+// This is a Base Class for any ApiClass
 class ApiRequester
 {
 	public:
