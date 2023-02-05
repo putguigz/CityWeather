@@ -1,4 +1,5 @@
 #include <nlohmann/json.hpp>
+#include "Utils.hpp"
 #include "GeoCodeApi.hpp"
 
 using json = nlohmann::json;
@@ -14,7 +15,6 @@ GeoCodeApi &GeoCodeApi::operator=(GeoCodeApi const & src){
     return *this;
 }
 
-
 void GeoCodeApi::addSpecificParameters(string const &inputCity){
     this->pushQueryParameter("name", inputCity);
     this->pushQueryParameter("count", "10");
@@ -27,13 +27,12 @@ std::vector<City>   GeoCodeApi::convertJsonResponseToMap( void ) {
     for (auto it : parsedJson.at("results")){
         City newCity;
 
-        //TODO THROW CATCH OR PROTECTION AGAINST NON-EXISTENT FIELDS
-        newCity.setName(it.at("name").get<std::string>());
-        newCity.setLocality(it.at("admin1").get<std::string>());
-        newCity.setCountry(it.at("country").get<std::string>());
-        newCity.setTimezone(it.at("timezone").get<std::string>());
-        newCity.setLatitude(to_string(it.at("latitude").get<double>()));
-        newCity.setLongitude(to_string(it.at("longitude").get<double>()));
+        setClassWithJsonField<City, string>("name", it, &newCity, &City::setName);
+        setClassWithJsonField<City, string>("admin1", it, &newCity, &City::setLocality);
+        setClassWithJsonField<City, string>("country", it, &newCity, &City::setCountry);
+        setClassWithJsonField<City, string>("timezone", it, &newCity, &City::setTimezone);
+        setClassWithJsonField<City, double>("latitude", it, &newCity, &City::setLatitude);
+        setClassWithJsonField<City, double>("longitude", it, &newCity, &City::setLongitude);
         
         resultCities.push_back(newCity);
     }

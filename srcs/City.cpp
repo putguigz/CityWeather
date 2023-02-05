@@ -1,7 +1,7 @@
 #include "City.hpp"
 
 // Constructors
-City::City(){
+City::City() : _latitude(0), _longitude(0){
 }
 
 City::City(const City &copy){
@@ -12,8 +12,8 @@ City::City(
 	string name,
 	string locality,
 	string country,
-	string latitude,
-	string longitude,
+	double latitude,
+	double longitude,
 	string timezone)
 {
 	_name = name;
@@ -75,20 +75,20 @@ void City::setCountry(string country)
 	_country = country;
 }
 
-string City::getLatitude() const
+double City::getLatitude() const
 {
 	return _latitude;
 }
-void City::setLatitude(string latitude)
+void City::setLatitude(double latitude)
 {
 	_latitude = latitude;
 }
 
-string City::getLongitude() const
+double City::getLongitude() const
 {
 	return _longitude;
 }
-void City::setLongitude(string longitude)
+void City::setLongitude(double longitude)
 {
 	_longitude = longitude;
 }
@@ -101,8 +101,6 @@ void City::setTimezone(string timezone)
 {
 	_timezone = timezone;
 }
-
-
 
 // Stream operators
 std::ostream & operator<<(std::ostream &stream, const City &object)

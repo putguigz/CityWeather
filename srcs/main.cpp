@@ -6,7 +6,7 @@
 #include "GeoCodeApi.hpp"
 #include "OpenMeteoApi.hpp"
 #include "FetchDataException.hpp"
-#include "Logger.hpp"
+#include "Utils.hpp"
 
 #define GEOCODE_URL    "https://geocoding-api.open-meteo.com/v1/search"
 #define OPENMETEO_URL  "https://api.open-meteo.com/v1/forecast"
@@ -36,12 +36,12 @@ int main(void){
         cout << *it << std::endl;
     }
 
-    OpenMeteoApi    request2(OPENMETEO_URL);
-    request2.addSpecificParameters(resultCities[0]);
-    request2.Get();
+//     OpenMeteoApi    request2(OPENMETEO_URL);
+//     request2.addSpecificParameters(resultCities[0]);
+//     request2.Get();
     
-    auto resultMeteos = request2.convertJsonResponseToMap();
-    for (auto it = resultMeteos.cbegin(); it != resultMeteos.cend(); it++){
-        cout << *it << std::endl;
-    }
+//     auto resultMeteos = request2.convertJsonResponseToMap();
+//     for (auto it = resultMeteos.cbegin(); it != resultMeteos.cend(); it++){
+//         cout << *it << std::endl;
+//     }
 }

@@ -14,7 +14,7 @@ class City
 		// Constructors
 		City( void );
 		City(const City &copy);
-		City(string name, string locality, string country, string latitude, string longitude, string timezone);
+		City(string name, string locality, string country, double latitude, double longitude, string timezone);
 		
 		// Destructor
 		virtual ~City();
@@ -25,14 +25,19 @@ class City
 		// Getters / Setters
 		string getName() const;
 		void setName(string name);
+
 		string getLocality() const;
 		void setLocality(string locality);
+
 		string getCountry() const;
 		void setCountry(string country);
-		string getLatitude() const;
-		void setLatitude(string latitude);
-		string getLongitude() const;
-		void setLongitude(string longitude);
+
+		double getLatitude() const;
+		void setLatitude(double latitude);
+
+		double getLongitude() const;
+		void setLongitude(double longitude);
+		
 		string getTimezone() const;
 		void setTimezone(string timezone);
 		
@@ -40,8 +45,8 @@ class City
 		string _name;
 		string _locality;
 		string _country;
-		string _latitude;
-		string _longitude;
+		double _latitude;
+		double _longitude;
 		string _timezone;
 };
 
