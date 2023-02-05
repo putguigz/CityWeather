@@ -19,7 +19,9 @@ class FetchDataException : public std::exception
         const char* what() const noexcept;
 
     private:
-        cpr::Response _response;
+        cpr::Response       _response;
+        std::string         _errorMessage;
+
 };
 
 #endif
