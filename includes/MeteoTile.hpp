@@ -3,12 +3,15 @@
 
 # include <iostream>
 # include <string>
+# include <unordered_map>
 
 using namespace std;
 
 class MeteoTile
 {
 	public:
+		static const std::unordered_map<int, string> weatherInterpretationCodes;
+
 		// Constructors
 		MeteoTile();
 		MeteoTile(const MeteoTile &copy);
