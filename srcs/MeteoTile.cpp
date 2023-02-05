@@ -1,14 +1,13 @@
 #include "MeteoTile.hpp"
 
 // Constructors
-MeteoTile::MeteoTile()
-{
-	_temperature = "";
-	_minTemperature = "";
-	_maxTemperature = "";
-	_precipitation = "";
-	_weatherCode = "";
-}
+MeteoTile::MeteoTile() : 
+	_temperature(0),
+	_minTemperature(0),
+	_maxTemperature(0),
+	_precipitation(0),
+	_weatherCode(0)
+{}
 
 MeteoTile::MeteoTile(const MeteoTile &copy)
 {
@@ -19,13 +18,13 @@ MeteoTile::MeteoTile(const MeteoTile &copy)
 	_weatherCode = copy.getWeatherCode();
 }
 
-MeteoTile::MeteoTile(string _temperature, string _minTemperature, string _maxTemperature, string _precipitation, string _weatherCode)
+MeteoTile::MeteoTile(float temperature, float minTemperature, float maxTemperature, float precipitation, int weatherCode)
 {
-	_temperature = _temperature;
-	_minTemperature = _minTemperature;
-	_maxTemperature = _maxTemperature;
-	_precipitation = _precipitation;
-	_weatherCode = _weatherCode;
+	_temperature = temperature;
+	_minTemperature = minTemperature;
+	_maxTemperature = maxTemperature;
+	_precipitation = precipitation;
+	_weatherCode = weatherCode;
 }
 
 
@@ -48,48 +47,48 @@ MeteoTile & MeteoTile::operator=(const MeteoTile &assign)
 
 
 // Getters / Setters
-string MeteoTile::getTemperature() const
+float MeteoTile::getTemperature() const
 {
 	return _temperature;
 }
-void MeteoTile::setTemperature(string newTemperature)
+void MeteoTile::setTemperature(float newTemperature)
 {
 	_temperature = newTemperature;
 }
 
-string MeteoTile::getMinTemperature() const
+float MeteoTile::getMinTemperature() const
 {
 	return _minTemperature;
 }
-void MeteoTile::setMinTemperature(string newMinTemperature)
+void MeteoTile::setMinTemperature(float newMinTemperature)
 {
 	_minTemperature = newMinTemperature;
 }
 
-string MeteoTile::getMaxTemperature() const
+float MeteoTile::getMaxTemperature() const
 {
 	return _maxTemperature;
 }
-void MeteoTile::setMaxTemperature(string newMaxTemperature)
+void MeteoTile::setMaxTemperature(float newMaxTemperature)
 {
 	_maxTemperature = newMaxTemperature;
 }
 
-string MeteoTile::getPrecipitation() const
+float MeteoTile::getPrecipitation() const
 {
 	return _precipitation;
 }
-void MeteoTile::setPrecipitation(string newPrecipitation)
+void MeteoTile::setPrecipitation(float newPrecipitation)
 {
 	_precipitation = newPrecipitation;
 }
 
-string MeteoTile::getWeatherCode() const
+int MeteoTile::getWeatherCode() const
 {
 	return _weatherCode;
 }
 
-void	MeteoTile::setWeatherCode(string newWeatherCode){
+void	MeteoTile::setWeatherCode(int newWeatherCode){
 	_weatherCode = newWeatherCode;
 }
 

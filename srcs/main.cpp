@@ -36,12 +36,12 @@ int main(void){
         cout << *it << std::endl;
     }
 
-//     OpenMeteoApi    request2(OPENMETEO_URL);
-//     request2.addSpecificParameters(resultCities[0]);
-//     request2.Get();
+    OpenMeteoApi    request2(OPENMETEO_URL);
+    request2.addSpecificParameters(resultCities[0]);
+    request2.Get();
     
-//     auto resultMeteos = request2.convertJsonResponseToMap();
-//     for (auto it = resultMeteos.cbegin(); it != resultMeteos.cend(); it++){
-//         cout << *it << std::endl;
-//     }
+    auto resultMeteos = request2.convertJsonResponseToMap();
+    for (auto it = resultMeteos.cbegin(); it != resultMeteos.cend(); it++){
+        cout << *it << std::endl;
+    }
 }

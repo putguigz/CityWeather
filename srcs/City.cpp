@@ -12,8 +12,8 @@ City::City(
 	string name,
 	string locality,
 	string country,
-	double latitude,
-	double longitude,
+	float latitude,
+	float longitude,
 	string timezone)
 {
 	_name = name;
@@ -75,20 +75,20 @@ void City::setCountry(string country)
 	_country = country;
 }
 
-double City::getLatitude() const
+float City::getLatitude() const
 {
 	return _latitude;
 }
-void City::setLatitude(double latitude)
+void City::setLatitude(float latitude)
 {
 	_latitude = latitude;
 }
 
-double City::getLongitude() const
+float City::getLongitude() const
 {
 	return _longitude;
 }
-void City::setLongitude(double longitude)
+void City::setLongitude(float longitude)
 {
 	_longitude = longitude;
 }

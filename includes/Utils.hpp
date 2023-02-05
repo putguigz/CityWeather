@@ -26,4 +26,15 @@ void    setClassWithJsonField(std::string jsonTag, nlohmann::json rawJson, C *ne
     }
 }
 
+template <typename C, typename T>
+void    setClassWithJsonFieldArray(std::string jsonTag, nlohmann::json rawJson, C *newCity,  int i, void (C::*setter)(T)){
+    try {
+        T value = rawJson.at(jsonTag)[i].get<T>();
+        (newCity->*setter)(value);
+    }
+    catch (std::exception &e){
+        logError(e.what());
+    }
+}
+
 #endif

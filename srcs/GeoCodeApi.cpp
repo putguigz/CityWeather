@@ -31,8 +31,8 @@ std::vector<City>   GeoCodeApi::convertJsonResponseToMap( void ) {
         setClassWithJsonField<City, string>("admin1", it, &newCity, &City::setLocality);
         setClassWithJsonField<City, string>("country", it, &newCity, &City::setCountry);
         setClassWithJsonField<City, string>("timezone", it, &newCity, &City::setTimezone);
-        setClassWithJsonField<City, double>("latitude", it, &newCity, &City::setLatitude);
-        setClassWithJsonField<City, double>("longitude", it, &newCity, &City::setLongitude);
+        setClassWithJsonField<City, float>("latitude", it, &newCity, &City::setLatitude);
+        setClassWithJsonField<City, float>("longitude", it, &newCity, &City::setLongitude);
         
         resultCities.push_back(newCity);
     }

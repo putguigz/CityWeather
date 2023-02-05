@@ -12,7 +12,7 @@ class MeteoTile
 		// Constructors
 		MeteoTile();
 		MeteoTile(const MeteoTile &copy);
-		MeteoTile(string temperature, string minTemperature, string maxTemperature, string precipitation, string weatherCode);
+		MeteoTile(float temperature, float minTemperature, float maxTemperature, float precipitation, int weatherCode);
 		
 		// Destructor
 		~MeteoTile();
@@ -21,27 +21,27 @@ class MeteoTile
 		MeteoTile & operator=(const MeteoTile &assign);
 		
 		// Getters / Setters
-		string	getTemperature() const;
-		void	setTemperature(string temperature);
+		float	getTemperature() const;
+		void	setTemperature(float temperature);
 
-		string	getMinTemperature() const;
-		void	setMinTemperature(string minTemperature);
+		float	getMinTemperature() const;
+		void	setMinTemperature(float minTemperature);
 
-		string	getMaxTemperature() const;
-		void	setMaxTemperature(string maxTemperature);
+		float	getMaxTemperature() const;
+		void	setMaxTemperature(float maxTemperature);
 
-		string	getPrecipitation() const;
-		void	setPrecipitation(string precipitation);
+		float	getPrecipitation() const;
+		void	setPrecipitation(float precipitation);
 
-		string	getWeatherCode() const;
-		void	setWeatherCode(string weatherCode);
+		int		getWeatherCode() const;
+		void	setWeatherCode(int weatherCode);
 
 	private:
-		string _temperature;
-		string _minTemperature;
-		string _maxTemperature;
-		string _precipitation;
-		string _weatherCode;
+		float	_temperature;
+		float	_minTemperature;
+		float	_maxTemperature;
+		float	_precipitation;
+		int		_weatherCode;
 
 		void	dailyAverageTemperature(void);
 };

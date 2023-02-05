@@ -1,5 +1,6 @@
 #include <nlohmann/json.hpp>
 #include "OpenMeteoApi.hpp"
+#include "Utils.hpp"
 
 using json = nlohmann::json;
 
@@ -24,8 +25,8 @@ OpenMeteoApi &OpenMeteoApi::operator=(OpenMeteoApi const & src){
 }
 
 void OpenMeteoApi::addSpecificParameters(City const &city){
-    this->pushQueryParameter("latitude", city.getLatitude());
-    this->pushQueryParameter("longitude", city.getLongitude());
+    this->pushQueryParameter("latitude", to_string(city.getLatitude()));
+    this->pushQueryParameter("longitude", to_string(city.getLongitude()));
     this->pushQueryParameter("timezone", city.getTimezone());
     this->pushQueryParameter("daily", aggregateDailyFields());
 }
@@ -42,20 +43,19 @@ std::string OpenMeteoApi::aggregateDailyFields( void ){
 }
 
 std::vector<MeteoTile>  OpenMeteoApi::convertJsonResponseToMap( void ) {
-    std::vector<MeteoTile> sevenDaysMeteo;
-    
+    std::vector<MeteoTile> sevenDaysMeteo(7);
+
     json parsedJson = json::parse(this->getResponseBody());
-    json sevenDaysForecast = parsedJson.at("daily");
-    for (int i = 0; i != 7; i++){
-        MeteoTile newMeteoDay;
+    json sevenDayForecast = parsedJson.at("daily");
+    
+    int day = 0;
+    for (auto it = sevenDaysMeteo.begin(); it != sevenDaysMeteo.end(); it++, day++){
+        MeteoTile dayForecast = *it;
 
-        //TODO THROW CATCH OR PROTECTION AGAINST NON-EXISTENT FIELDS
-        newMeteoDay.setMinTemperature(to_string(sevenDaysForecast.at("temperature_2m_min")[i].get<float>()));
-        newMeteoDay.setMaxTemperature(to_string(sevenDaysForecast.at("temperature_2m_max")[i].get<float>()));
-        newMeteoDay.setPrecipitation(to_string(sevenDaysForecast.at("precipitation_sum")[i].get<float>()));
-        newMeteoDay.setWeatherCode(to_string(sevenDaysForecast.at("weathercode")[i].get<int>()));
-
-        sevenDaysMeteo.push_back(newMeteoDay);
+        setClassWithJsonFieldArray<MeteoTile, float>("temperature_2m_min", sevenDayForecast, &dayForecast, day, &MeteoTile::setMinTemperature);
+        setClassWithJsonFieldArray<MeteoTile, float>("temperature_2m_max", sevenDayForecast, &dayForecast, day, &MeteoTile::setMaxTemperature);
+        setClassWithJsonFieldArray<MeteoTile, float>("precipitation_sum", sevenDayForecast, &dayForecast, day, &MeteoTile::setPrecipitation);
+        setClassWithJsonFieldArray<MeteoTile, int>("weathercode", sevenDayForecast, &dayForecast, day, &MeteoTile::setWeatherCode);
     }
     return sevenDaysMeteo;
 }
