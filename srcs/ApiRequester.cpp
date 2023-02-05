@@ -78,13 +78,9 @@ string const &ApiRequester::Get( void ) {
     
     //TODO BETTER MANAGE ERRORS
     response = cpr::Get(cpr::Url{_url}, parameters);
-    cerr << response.url << std::endl;
     if (response.status_code >= 400)
-    {
-        cerr << response.text << std::endl;
-        throw FetchDataException(_url);
-    }
-    
+        throw FetchDataException(response);
+
     _response_body = response.text;
     return _response_body;
 }

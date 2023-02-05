@@ -3,7 +3,7 @@
 FetchDataException::FetchDataException( void ){
 }
 
-FetchDataException::FetchDataException( std::string url ) : _url(url)
+FetchDataException::FetchDataException( cpr::Response response) : _response(response)
 {
 }
 
@@ -16,15 +16,16 @@ FetchDataException::FetchDataException( FetchDataException const &src ){
 
 FetchDataException &FetchDataException::operator=( FetchDataException const &src ){
     if (this != &src){
-        this->_url = src._url;
+        this->_response = src._response;
     }
     return *this;
 }
 
 
 const char* FetchDataException::what() const noexcept{
-    std::string errorMessage("Error While fetching datas from ");
-    errorMessage += _url;
+    std::stringstream errorMessage;
 
-    return errorMessage.c_str();
+    errorMessage << "ERROR: " << "http_code=" << _response.status_code <<" url_requested=" << _response.url << " error_message=" << _response.text;
+
+    return (errorMessage.str().c_str());
 }

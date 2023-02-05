@@ -40,8 +40,6 @@ int main(void){
     request2.addSpecificParameters(resultCities[0]);
     request2.Get();
     
-    logError("There Was an error");
-
     auto resultMeteos = request2.convertJsonResponseToMap();
     for (auto it = resultMeteos.cbegin(); it != resultMeteos.cend(); it++){
         cout << *it << std::endl;

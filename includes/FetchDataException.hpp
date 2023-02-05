@@ -2,13 +2,15 @@
 # define FETCHDATAEXCEPTION_HPP
 
 # include <exception>
+# include <cpr/cpr.h>
 # include <string>
+# include <sstream>
 
 class FetchDataException : public std::exception
 {
     public:
         FetchDataException( void );
-        FetchDataException( std::string );
+        FetchDataException( cpr::Response );
         virtual ~FetchDataException( void );
         FetchDataException( FetchDataException const &src );
 
@@ -17,7 +19,7 @@ class FetchDataException : public std::exception
         const char* what() const noexcept;
 
     private:
-        std::string      _url;
+        cpr::Response _response;
 };
 
 #endif
