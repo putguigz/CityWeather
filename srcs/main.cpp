@@ -23,13 +23,12 @@ Glib::RefPtr<Gtk::Application> app;
 
 void on_text_typed(Gtk::SearchEntry *ptr)
 {
-    std::cerr << ptr->get_text() << endl;
-}
+  std::string city = ptr->get_text();
 
-void on_text_entry(Gtk::SearchEntry *ptr){
+  if (city.empty())
+    return;
   GeoCodeApi citySearcher(GEOCODE_URL);
 
-  std::string city = ptr->get_text();
 
   citySearcher.addSpecificParameters(city);
   citySearcher.Get();
@@ -40,6 +39,7 @@ void on_text_entry(Gtk::SearchEntry *ptr){
     std::cerr << city << endl;
   }
 }
+
 
 void on_app_activate()
 {
@@ -78,7 +78,6 @@ void on_app_activate()
   if (pSearchBar)
   {
     pSearchBar->signal_changed().connect([pSearchBar] () { on_text_typed(pSearchBar); });
-    pSearchBar->signal_activate().connect([pSearchBar] () { on_text_entry(pSearchBar); });
   }
   // It's not possible to delete widgets after app->run() has returned.
   // Delete the dialog with its child widgets before app->run() returns.
