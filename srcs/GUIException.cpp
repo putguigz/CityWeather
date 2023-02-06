@@ -1,20 +1,20 @@
 #include "GUIException.hpp"
 
-GuiException::GuiException( void ){
+GUIException::GUIException( void ){
 }
 
-GuiException::GuiException( string errorMessage) : _errorMessage(errorMessage)
+GUIException::GUIException( std::string errorMessage) : _errorMessage(errorMessage)
 {
 }
 
-GuiException::~GuiException(){
+GUIException::~GUIException(){
 }
 
-GuiException::GuiException( GuiException const &src ){
+GUIException::GUIException( GUIException const &src ){
     *this = src;
 }
 
-GuiException &GuiException::operator=( GuiException const &src ){
+GUIException &GUIException::operator=( GUIException const &src ){
     if (this != &src){
         this->_errorMessage = src._errorMessage;
     }
@@ -22,6 +22,6 @@ GuiException &GuiException::operator=( GuiException const &src ){
 }
 
 
-const char* GuiException::what() const noexcept{
+const char* GUIException::what() const noexcept{
     return (_errorMessage.c_str());
 }

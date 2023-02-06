@@ -7,6 +7,7 @@
 #include "OpenMeteoApi.hpp"
 #include "FetchDataException.hpp"
 #include "Utils.hpp"
+#include "gtkmm.h"
 
 #define GEOCODE_URL     "https://geocoding-api.open-meteo.com/v1/search"
 #define OPENMETEO_URL   "https://api.open-meteo.com/v1/forecast"
@@ -15,14 +16,30 @@
 // for convenience
 using namespace std;
 
-//TODO DELETE WHEN APP GETS GRAPHICAL
-// static string user_input(void){
-//     string response;
+namespace
+{
+Gtk::Window* pDialog = nullptr;
+Glib::RefPtr<Gtk::Application> app;
 
-//     cout << "Enter City Name:" << std::endl;
-//     cin >> response;
-//     return response;
-// }
+void on_text_typed(Gtk::SearchEntry *ptr)
+{
+    std::cerr << ptr->get_text() << endl;
+}
+
+void on_text_entry(Gtk::SearchEntry *ptr){
+  GeoCodeApi citySearcher(GEOCODE_URL);
+
+  std::string city = ptr->get_text();
+
+  citySearcher.addSpecificParameters(city);
+  citySearcher.Get();
+  std::vector<City> cities = citySearcher.convertJsonResponseToMap();
+
+  for (auto city : cities)
+  {
+    std::cerr << city << endl;
+  }
+}
 
 void on_app_activate()
 {
@@ -56,31 +73,29 @@ void on_app_activate()
     return;
   }
 
+  // Get the GtkBuilder-instantiated button, and connect a signal handler:
+  auto pSearchBar = refBuilder->get_widget<Gtk::SearchEntry>("SearchBar");
+  if (pSearchBar)
+  {
+    pSearchBar->signal_changed().connect([pSearchBar] () { on_text_typed(pSearchBar); });
+    pSearchBar->signal_activate().connect([pSearchBar] () { on_text_entry(pSearchBar); });
+  }
+  // It's not possible to delete widgets after app->run() has returned.
+  // Delete the dialog with its child widgets before app->run() returns.
+  pDialog->signal_hide().connect([] () { delete pDialog; });
+
+
   app->add_window(*pDialog);
-//   pDialog->set_visible(true);
+  pDialog->set_visible(true);
+}
+} // anonymous namespace
+
+int main(int argc, char** argv)
+{
+  app = Gtk::Application::create("CityWeather");
+
+  app->signal_activate().connect([] () { on_app_activate(); });
+
+  return app->run(argc, argv);
 }
 
-
-int main(int ac, char **av){
-
-
-    // string inputCity = user_input();
-
-    // GeoCodeApi      request(GEOCODE_URL);
-    // request.addSpecificParameters(inputCity);
-    // request.Get();
-
-    // auto resultCities = request.convertJsonResponseToMap();
-    // for (citiesIterator it = resultCities.cbegin(); it!= resultCities.cend(); it++){
-    //     cout << *it << std::endl;
-    // }
-
-    // OpenMeteoApi    request2(OPENMETEO_URL);
-    // request2.addSpecificParameters(resultCities[0]);
-    // request2.Get();
-    
-    // auto resultMeteos = request2.convertJsonResponseToMap();
-    // for (auto it = resultMeteos.cbegin(); it != resultMeteos.cend(); it++){
-    //     cout << *it << std::endl;
-    // }
-}

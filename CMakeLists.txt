@@ -13,7 +13,6 @@ set(SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/City.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/MeteoTile.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/Utils.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/srcs/GUI.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/GUIException.cpp"
     )
 

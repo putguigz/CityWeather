@@ -24,6 +24,8 @@ std::vector<City>   GeoCodeApi::convertJsonResponseToMap( void ) {
     std::vector<City> resultCities;
 
     json parsedJson = json::parse(this->getResponseBody());
+    if (parsedJson.find("results") == parsedJson.end())
+        return resultCities;
     for (auto it : parsedJson.at("results")){
         City newCity;
 
