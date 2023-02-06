@@ -13,6 +13,8 @@ set(SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/City.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/MeteoTile.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/Utils.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/srcs/GUI.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/srcs/GUIException.cpp"
     )
 
 find_package(PkgConfig)
@@ -43,7 +45,7 @@ target_link_libraries( ${PROJECT_NAME} PRIVATE cpr::cpr)
 target_link_libraries( ${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)
 target_link_libraries( ${PROJECT_NAME} PRIVATE ${GTKMM_LIBRARIES} )
 
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 target_compile_options( ${PROJECT_NAME} PRIVATE -Wall -Wextra -Werror)
 

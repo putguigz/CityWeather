@@ -7,7 +7,7 @@ FetchDataException::FetchDataException( cpr::Response response) : _response(resp
 {
     std::stringstream tmp;
     
-    tmp << "ERROR: " << "http_code=" << _response.status_code <<" url_requested=" << _response.url << " error_message=" << _response.text;
+    tmp << "FETCH ERROR: " << "http_code=" << _response.status_code <<" url_requested=" << _response.url << " error_message=" << _response.text;
     _errorMessage = tmp.str();
 }
 
