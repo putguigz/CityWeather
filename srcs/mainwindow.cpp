@@ -29,8 +29,7 @@ void MainWindow::searchCity(){
     
     //TODO : Add a try catch block
     try {
-        GeoCodeApi citySearcher(GEOCODE_URL);
-        citySearcher.addSpecificParameters(this->inputCity.toStdString());
+        GeoCodeApi citySearcher(this->inputCity.toStdString());
         citySearcher.Get();
         this->cities = citySearcher.convertJsonResponseToMap();
     }
@@ -56,27 +55,58 @@ void MainWindow::registerText(){
         ui->cityCombo->clear();
 }
 
-void MainWindow::getWeather(int idx){
-    try{
-        OpenMeteoApi meteoSearcher(OPENMETEO_URL);
-        meteoSearcher.addSpecificParameters(this->cities[idx]);
+void    MainWindow::setCurrentCityTitle(int index){
+    QString cityNameRegionCountry;
+    
+    cityNameRegionCountry = QString::fromStdString(this->cities[index].getInfos());
+    ui->currentCity->setText(cityNameRegionCountry);
+}
+
+void    MainWindow::resetSearchBar( void ){
+    this->cities.clear();
+    ui->cityCombo->clear();
+    ui->searchBar->clear();
+}
+
+void    MainWindow::proceedSearchEntry(int index){
+    setCurrentCityTitle(index);
+    resetSearchBar();
+    populateMeteoTiles();
+}
+
+void    MainWindow::getApiMeteo( City const &city ){
+        OpenMeteoApi meteoSearcher(city);
+
         meteoSearcher.Get();
         this->meteoTiles = meteoSearcher.convertJsonResponseToMap();
+}
 
-        ui->currentCity->setText(QString::fromStdString(this->cities[idx].getInfos()));
-        this->cities.clear();
-        ui->cityCombo->clear();
-        ui->searchBar->clear();
-        
-        QHBoxLayout *layout = ui->tilesLayout;
-        for (int i = 0; i < layout->count(); i++) {
-            QLayoutItem *item = layout->itemAt(i);
-            QWidget *widget = item->widget();
+void    MainWindow::populateMeteoTiles( void ){
+    // QHBoxLayout *layout = ui->tilesLayout;
+        QList<QFrame*> layout = ui->tilesLayout->findChildren<QFrame*>();
+        QList<QFrame*>::iterator it1;
+        for (it1 = layout.begin(); it1 != layout.end(); it1++) {
+            // QWidget *widget = (*it1)->widget();
 
             //find all the labels in the frame
-            QList<QLabel*> labels = widget->findChildren<QLabel*>();
-            cerr << labels.at(2)->text().toStdString() << endl;   
+            QList<QLabel*> labels = (*it1)->findChildren<QLabel*>();
+            QList<QLabel*>::iterator it;
+            for (it = labels.begin(); it != labels.end(); ++it) {
+                cerr << (*it)->text().toStdString() << endl;
+            }
+            // labels.at(2)->setText(QString::fromStdString("Prout1"));
+            // labels.at(1)->setText(QString::fromStdString("Prout2"));
+            // labels.at(0)->setText(QString::fromStdString("Prout3"));
+            // cerr << labels.at(2)->text().toStdString() << endl;
+            // cerr << labels.at(1)->text().toStdString() << endl;   
+            // cerr << labels.at(0)->text().toStdString() << endl;   
         }
+}
+
+void MainWindow::getWeather(int index){
+    try{
+        getApiMeteo(this->cities[index]);
+        proceedSearchEntry(index);
     }
     catch (FetchDataException &e) {
         cerr << e.what() << endl;
@@ -86,12 +116,8 @@ void MainWindow::getWeather(int idx){
         cerr << e.what() << endl;
         return ;
     }
-    
-
-    //TODO for DEBUG, DELETE THIS
-    // for (auto meteo : meteoTiles){
-    //     cerr << meteo << endl;
-    // }
+    for (auto meteo : meteoTiles)
+        cerr << meteo << endl;
 }
 
 MainWindow::~MainWindow()

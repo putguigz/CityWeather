@@ -95,6 +95,7 @@ float MeteoTile::getMinTemperature() const
 void MeteoTile::setMinTemperature(float newMinTemperature)
 {
 	_minTemperature = newMinTemperature;
+	calculateAverageTemperature();
 }
 
 float MeteoTile::getMaxTemperature() const
@@ -104,6 +105,7 @@ float MeteoTile::getMaxTemperature() const
 void MeteoTile::setMaxTemperature(float newMaxTemperature)
 {
 	_maxTemperature = newMaxTemperature;
+	calculateAverageTemperature();
 }
 
 float MeteoTile::getPrecipitation() const
@@ -122,6 +124,10 @@ int MeteoTile::getWeatherCode() const
 
 void	MeteoTile::setWeatherCode(int newWeatherCode){
 	_weatherCode = newWeatherCode;
+}
+
+void	MeteoTile::calculateAverageTemperature(){
+	_temperature = (_minTemperature + _maxTemperature) / 2;
 }
 
 

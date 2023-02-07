@@ -4,10 +4,11 @@
 
 using json = nlohmann::json;
 
-GeoCodeApi::GeoCodeApi( void ){}
+GeoCodeApi::GeoCodeApi( void ) : ApiRequester(GEOCODE_URL){}
 GeoCodeApi::GeoCodeApi( GeoCodeApi const & src ) : ApiRequester(src){}
-GeoCodeApi::GeoCodeApi( string const & url ) : ApiRequester(url){}
-GeoCodeApi::GeoCodeApi( const char url[] ) : ApiRequester(url) {}
+GeoCodeApi::GeoCodeApi( string const & cityInputed ) : ApiRequester(GEOCODE_URL) {
+    addSpecificParameters(cityInputed);
+}
 GeoCodeApi::~GeoCodeApi( void ){}
 
 GeoCodeApi &GeoCodeApi::operator=(GeoCodeApi const & src){

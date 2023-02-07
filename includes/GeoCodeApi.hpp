@@ -11,8 +11,7 @@ class GeoCodeApi : public ApiRequester {
     public:
 		GeoCodeApi( void );
 		GeoCodeApi( GeoCodeApi const & src );
-        GeoCodeApi( string const & url );
-		GeoCodeApi( const char url[] );
+        GeoCodeApi( string const & cityInputed );
 		virtual ~GeoCodeApi( void );
 
         GeoCodeApi &operator=(GeoCodeApi const & src);

@@ -46,7 +46,7 @@ class MeteoTile
 		float	_precipitation;
 		int		_weatherCode;
 
-		void	dailyAverageTemperature(void);
+		void	calculateAverageTemperature();
 };
 
 // Stream operators

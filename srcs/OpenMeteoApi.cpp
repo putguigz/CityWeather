@@ -13,10 +13,11 @@ const char *OpenMeteoApi::dailyFields[DAILYFIELDS_SIZE] = {
         "weathercode"
         };
 
-OpenMeteoApi::OpenMeteoApi( void ){}
+OpenMeteoApi::OpenMeteoApi( void ) : ApiRequester(OPENMETEO_URL){}
 OpenMeteoApi::OpenMeteoApi( OpenMeteoApi const & src ) : ApiRequester(src){}
-OpenMeteoApi::OpenMeteoApi( string const & url ) : ApiRequester(url){}
-OpenMeteoApi::OpenMeteoApi( const char url[] ) : ApiRequester(url) {}
+OpenMeteoApi::OpenMeteoApi( City const &city ) : ApiRequester(OPENMETEO_URL){
+    addSpecificParameters(city);
+}
 OpenMeteoApi::~OpenMeteoApi( void ){}
 
 OpenMeteoApi &OpenMeteoApi::operator=(OpenMeteoApi const & src){
@@ -45,7 +46,10 @@ std::string OpenMeteoApi::aggregateDailyFields( void ){
 std::vector<MeteoTile>  OpenMeteoApi::convertJsonResponseToMap( void ) {
     std::vector<MeteoTile> sevenDaysMeteo(7);
 
+    //TODO if json throws...do something
     json parsedJson = json::parse(this->getResponseBody());
+    
+    //TODO protect if daily doesn't exist
     json sevenDayForecast = parsedJson.at("daily");
     
     int day = 0;

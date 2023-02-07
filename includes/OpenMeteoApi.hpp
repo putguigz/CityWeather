@@ -15,8 +15,7 @@ class OpenMeteoApi : public ApiRequester {
 
 		OpenMeteoApi( void );
 		OpenMeteoApi( OpenMeteoApi const & src );
-        OpenMeteoApi( string const & url );
-		OpenMeteoApi( const char url[] );
+        OpenMeteoApi( City const &city );
         virtual ~OpenMeteoApi( void );
 
         OpenMeteoApi &operator=(OpenMeteoApi const & src);

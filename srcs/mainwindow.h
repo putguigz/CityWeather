@@ -25,6 +25,12 @@ private:
     void    searchCity(void);
     void    registerText(void);
     void    getWeather(int idx);
+    void    setCurrentCityTitle(int index);
+    void    resetSearchBar( void );
+    void    proceedSearchEntry(int index);
+    void    getApiMeteo( City const &city );
+    void    populateMeteoTiles( void );
+    
 
     QString                 inputCity;
     std::vector<City>       cities;
