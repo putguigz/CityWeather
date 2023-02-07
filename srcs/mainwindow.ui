@@ -111,7 +111,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>12</x>
@@ -129,12 +129,31 @@
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="QLabel" name="picture">
+       <widget class="QLabel" name="day">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>5</x>
+          <y>10</y>
+          <width>121</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 75 oblique 11pt &quot;DejaVu Sans Mono&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Today</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="picture_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
           <y>50</y>
-          <width>101</width>
+          <width>111</width>
           <height>101</height>
          </rect>
         </property>
@@ -145,12 +164,25 @@
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QLabel" name="temperature">
+       <widget class="QLabel" name="infos_3">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>10</x>
+          <y>260</y>
+          <width>111</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="temperature_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
           <y>150</y>
-          <width>101</width>
+          <width>111</width>
           <height>71</height>
          </rect>
         </property>
@@ -169,25 +201,6 @@
         </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="day">
-        <property name="geometry">
-         <rect>
-          <x>25</x>
-          <y>10</y>
-          <width>91</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font: 75 oblique 11pt &quot;DejaVu Sans Mono&quot;;</string>
-        </property>
-        <property name="text">
-         <string>Today</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -203,57 +216,12 @@
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="QLabel" name="picture_2">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>50</y>
-          <width>101</width>
-          <height>101</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="scaledContents">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QLabel" name="temperature_2">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>150</y>
-          <width>101</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <family>DejaVu Sans Mono</family>
-          <pointsize>17</pointsize>
-          <italic>true</italic>
-         </font>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
        <widget class="QLabel" name="day_2">
         <property name="geometry">
          <rect>
-          <x>25</x>
+          <x>5</x>
           <y>10</y>
-          <width>91</width>
+          <width>121</width>
           <height>20</height>
          </rect>
         </property>
@@ -267,22 +235,12 @@
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-      </widget>
-     </item>
-     <item>
-      <widget class="QFrame" name="frame_3">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QLabel" name="picture_3">
+       <widget class="QLabel" name="picture_2">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>10</x>
           <y>50</y>
-          <width>101</width>
+          <width>111</width>
           <height>101</height>
          </rect>
         </property>
@@ -293,12 +251,12 @@
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QLabel" name="temperature_3">
+       <widget class="QLabel" name="temperature_2">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>10</x>
           <y>150</y>
-          <width>101</width>
+          <width>111</width>
           <height>71</height>
          </rect>
         </property>
@@ -322,12 +280,35 @@
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
+       <widget class="QLabel" name="infos_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>260</y>
+          <width>111</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="frame_3">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
        <widget class="QLabel" name="day_3">
         <property name="geometry">
          <rect>
-          <x>25</x>
+          <x>5</x>
           <y>10</y>
-          <width>91</width>
+          <width>121</width>
           <height>20</height>
          </rect>
         </property>
@@ -341,38 +322,25 @@
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-      </widget>
-     </item>
-     <item>
-      <widget class="QFrame" name="frame_4">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QLabel" name="picture_4">
+       <widget class="QLabel" name="infos_4">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>50</y>
-          <width>101</width>
-          <height>101</height>
+          <x>10</x>
+          <y>260</y>
+          <width>111</width>
+          <height>161</height>
          </rect>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="scaledContents">
-         <bool>true</bool>
-        </property>
        </widget>
        <widget class="QLabel" name="temperature_4">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>10</x>
           <y>150</y>
-          <width>101</width>
+          <width>111</width>
           <height>71</height>
          </rect>
         </property>
@@ -396,12 +364,38 @@
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
+       <widget class="QLabel" name="picture_4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>50</y>
+          <width>111</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="frame_4">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
        <widget class="QLabel" name="day_4">
         <property name="geometry">
          <rect>
-          <x>25</x>
+          <x>5</x>
           <y>10</y>
-          <width>91</width>
+          <width>121</width>
           <height>20</height>
          </rect>
         </property>
@@ -415,38 +409,25 @@
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-      </widget>
-     </item>
-     <item>
-      <widget class="QFrame" name="frame_5">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QLabel" name="picture_5">
+       <widget class="QLabel" name="infos_5">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>50</y>
-          <width>101</width>
-          <height>101</height>
+          <x>10</x>
+          <y>260</y>
+          <width>111</width>
+          <height>161</height>
          </rect>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="scaledContents">
-         <bool>true</bool>
-        </property>
        </widget>
        <widget class="QLabel" name="temperature_5">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>10</x>
           <y>150</y>
-          <width>101</width>
+          <width>111</width>
           <height>71</height>
          </rect>
         </property>
@@ -470,12 +451,38 @@
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
+       <widget class="QLabel" name="picture_5">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>50</y>
+          <width>111</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="frame_5">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
        <widget class="QLabel" name="day_5">
         <property name="geometry">
          <rect>
-          <x>25</x>
+          <x>5</x>
           <y>10</y>
-          <width>91</width>
+          <width>121</width>
           <height>20</height>
          </rect>
         </property>
@@ -489,38 +496,25 @@
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-      </widget>
-     </item>
-     <item>
-      <widget class="QFrame" name="frame_6">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QLabel" name="picture_6">
+       <widget class="QLabel" name="infos_6">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>50</y>
-          <width>101</width>
-          <height>101</height>
+          <x>10</x>
+          <y>260</y>
+          <width>111</width>
+          <height>161</height>
          </rect>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="scaledContents">
-         <bool>true</bool>
-        </property>
        </widget>
        <widget class="QLabel" name="temperature_6">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>10</x>
           <y>150</y>
-          <width>101</width>
+          <width>111</width>
           <height>71</height>
          </rect>
         </property>
@@ -544,12 +538,38 @@
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
+       <widget class="QLabel" name="picture_6">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>50</y>
+          <width>111</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="frame_6">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
        <widget class="QLabel" name="day_6">
         <property name="geometry">
          <rect>
-          <x>25</x>
+          <x>5</x>
           <y>10</y>
-          <width>91</width>
+          <width>121</width>
           <height>20</height>
          </rect>
         </property>
@@ -563,38 +583,25 @@
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-      </widget>
-     </item>
-     <item>
-      <widget class="QFrame" name="frame_7">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QLabel" name="picture_7">
+       <widget class="QLabel" name="infos_7">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>50</y>
-          <width>101</width>
-          <height>101</height>
+          <x>10</x>
+          <y>260</y>
+          <width>111</width>
+          <height>161</height>
          </rect>
         </property>
         <property name="text">
          <string/>
         </property>
-        <property name="scaledContents">
-         <bool>true</bool>
-        </property>
        </widget>
        <widget class="QLabel" name="temperature_7">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>10</x>
           <y>150</y>
-          <width>101</width>
+          <width>111</width>
           <height>71</height>
          </rect>
         </property>
@@ -618,12 +625,38 @@
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
+       <widget class="QLabel" name="picture_7">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>50</y>
+          <width>111</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="frame_7">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
        <widget class="QLabel" name="day_7">
         <property name="geometry">
          <rect>
-          <x>25</x>
+          <x>5</x>
           <y>10</y>
-          <width>91</width>
+          <width>121</width>
           <height>20</height>
          </rect>
         </property>
@@ -635,6 +668,64 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="infos_8">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>260</y>
+          <width>111</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="temperature_8">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>150</y>
+          <width>111</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>DejaVu Sans Mono</family>
+          <pointsize>17</pointsize>
+          <italic>true</italic>
+         </font>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="picture_8">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>50</y>
+          <width>111</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
         </property>
        </widget>
       </widget>

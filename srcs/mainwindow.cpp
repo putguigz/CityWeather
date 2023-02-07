@@ -82,24 +82,19 @@ void    MainWindow::getApiMeteo( City const &city ){
 }
 
 void    MainWindow::populateMeteoTiles( void ){
-    // QHBoxLayout *layout = ui->tilesLayout;
-        QList<QFrame*> layout = ui->tilesLayout->findChildren<QFrame*>();
-        QList<QFrame*>::iterator it1;
-        for (it1 = layout.begin(); it1 != layout.end(); it1++) {
-            // QWidget *widget = (*it1)->widget();
+        QHBoxLayout *layout = ui->tilesLayout;
+        for (int i = 0; i < layout->count(); i++) {
+            QLayoutItem *item = layout->itemAt(i);
+            QWidget *widget = item->widget();
 
-            //find all the labels in the frame
-            QList<QLabel*> labels = (*it1)->findChildren<QLabel*>();
-            QList<QLabel*>::iterator it;
-            for (it = labels.begin(); it != labels.end(); ++it) {
-                cerr << (*it)->text().toStdString() << endl;
-            }
-            // labels.at(2)->setText(QString::fromStdString("Prout1"));
-            // labels.at(1)->setText(QString::fromStdString("Prout2"));
-            // labels.at(0)->setText(QString::fromStdString("Prout3"));
+            QList<QLabel*> labels = widget->findChildren<QLabel*>();
+            labels.at(0)->setText(QString::fromStdString("0"));
+            labels.at(1)->setText(QString::fromStdString("1"));
+            labels.at(2)->setText(QString::fromStdString("2"));
+            labels.at(3)->setText(QString::fromStdString("3"));
             // cerr << labels.at(2)->text().toStdString() << endl;
             // cerr << labels.at(1)->text().toStdString() << endl;   
-            // cerr << labels.at(0)->text().toStdString() << endl;   
+            // cerr << labels.at(0)->text().toStdString() << endl;  
         }
 }
 
@@ -116,6 +111,8 @@ void MainWindow::getWeather(int index){
         cerr << e.what() << endl;
         return ;
     }
+
+    //TODO DELETE, just DEBUG
     for (auto meteo : meteoTiles)
         cerr << meteo << endl;
 }
