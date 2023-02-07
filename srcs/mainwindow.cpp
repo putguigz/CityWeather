@@ -62,6 +62,7 @@ void MainWindow::getWeather(int idx){
         meteoSearcher.addSpecificParameters(this->cities[idx]);
         meteoSearcher.Get();
         this->meteoTiles = meteoSearcher.convertJsonResponseToMap();
+        ui->currentCity->setText(QString::fromStdString(this->cities[idx].getInfos()));
         this->cities.clear();
         ui->cityCombo->clear();
         ui->searchBar->clear();
