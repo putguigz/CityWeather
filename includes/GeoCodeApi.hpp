@@ -4,6 +4,9 @@
 # include "ApiRequester.hpp"
 # include "City.hpp"
 
+# define GEOCODE_URL     "https://geocoding-api.open-meteo.com/v1/search"
+
+
 class GeoCodeApi : public ApiRequester {
     public:
 		GeoCodeApi( void );

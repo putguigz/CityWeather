@@ -102,6 +102,16 @@ void City::setTimezone(string timezone)
 	_timezone = timezone;
 }
 
+string City::getInfos() const{
+	string region;
+
+	if (_locality.empty())
+		region = "Unknown";
+	else
+		region = _locality;
+	return _name + ", " + region + ", " + _country;
+}
+
 // Stream operators
 std::ostream & operator<<(std::ostream &stream, const City &object)
 {

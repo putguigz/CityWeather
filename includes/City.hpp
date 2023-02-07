@@ -41,6 +41,8 @@ class City
 		string getTimezone() const;
 		void setTimezone(string timezone);
 		
+		string getInfos() const;
+
 	private:
 		string _name;
 		string _locality;

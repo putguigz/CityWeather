@@ -4,6 +4,13 @@ project(CityWeather)
 
 include_directories("includes")
 
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+    
 set(SOURCES 
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/main.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/ApiRequester.cpp"
@@ -14,13 +21,18 @@ set(SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/MeteoTile.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/Utils.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/GUIException.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/srcs/mainwindow.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/srcs/mainwindow.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/srcs/mainwindow.ui"
     )
 
 find_package(PkgConfig)
 pkg_check_modules(GTKMM gtkmm-4.0)
 link_directories( ${GTKMM_LIBRARY_DIRS} )
+
 include_directories( ${GTKMM_INCLUDE_DIRS} )
 
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 include(FetchContent)
 
@@ -43,6 +55,7 @@ add_executable( ${PROJECT_NAME} ${SOURCES} )
 target_link_libraries( ${PROJECT_NAME} PRIVATE cpr::cpr)
 target_link_libraries( ${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)
 target_link_libraries( ${PROJECT_NAME} PRIVATE ${GTKMM_LIBRARIES} )
+target_link_libraries( ${PROJECT_NAME} PRIVATE Qt5::Widgets)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)

@@ -5,6 +5,8 @@
 # include "City.hpp"
 # include "MeteoTile.hpp"
 
+# define OPENMETEO_URL   "https://api.open-meteo.com/v1/forecast"
+
 # define DAILYFIELDS_SIZE 4
 
 class OpenMeteoApi : public ApiRequester {
