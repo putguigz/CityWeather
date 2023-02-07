@@ -22,15 +22,9 @@ set(SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/Utils.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/GUIException.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/mainwindow.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/srcs/mainwindow.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/mainwindow.ui"
     )
 
-find_package(PkgConfig)
-pkg_check_modules(GTKMM gtkmm-4.0)
-link_directories( ${GTKMM_LIBRARY_DIRS} )
-
-include_directories( ${GTKMM_INCLUDE_DIRS} )
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
@@ -40,7 +34,6 @@ FetchContent_Declare(cpr
     GIT_REPOSITORY https://github.com/libcpr/cpr.git
     GIT_TAG 871ed52d350214a034f6ef8a3b8f51c5ce1bd400
 ) # The commit hash for 1.9.0. Replace with the latest from: https://github.com/libcpr/cpr/releases
-
 FetchContent_MakeAvailable(cpr)
 
 
@@ -54,7 +47,6 @@ add_executable( ${PROJECT_NAME} ${SOURCES} )
 
 target_link_libraries( ${PROJECT_NAME} PRIVATE cpr::cpr)
 target_link_libraries( ${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)
-target_link_libraries( ${PROJECT_NAME} PRIVATE ${GTKMM_LIBRARIES} )
 target_link_libraries( ${PROJECT_NAME} PRIVATE Qt5::Widgets)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
