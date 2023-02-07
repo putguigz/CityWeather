@@ -20,7 +20,7 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -114,14 +114,14 @@
    <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>11</x>
-      <y>150</y>
+      <x>12</x>
+      <y>151</y>
       <width>951</width>
       <height>441</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
+    <layout class="QHBoxLayout" name="tilesLayout">
+     <item>
       <widget class="QFrame" name="frame">
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -195,7 +195,7 @@
        </widget>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item>
       <widget class="QFrame" name="frame_2">
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -261,7 +261,7 @@
          <string notr="true">font: 75 oblique 11pt &quot;DejaVu Sans Mono&quot;;</string>
         </property>
         <property name="text">
-         <string>Today</string>
+         <string>+1</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -269,7 +269,7 @@
        </widget>
       </widget>
      </item>
-     <item row="0" column="2">
+     <item>
       <widget class="QFrame" name="frame_3">
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -335,7 +335,7 @@
          <string notr="true">font: 75 oblique 11pt &quot;DejaVu Sans Mono&quot;;</string>
         </property>
         <property name="text">
-         <string>Today</string>
+         <string>+2</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -343,7 +343,7 @@
        </widget>
       </widget>
      </item>
-     <item row="0" column="3">
+     <item>
       <widget class="QFrame" name="frame_4">
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -409,7 +409,7 @@
          <string notr="true">font: 75 oblique 11pt &quot;DejaVu Sans Mono&quot;;</string>
         </property>
         <property name="text">
-         <string>Today</string>
+         <string>+3</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -417,7 +417,7 @@
        </widget>
       </widget>
      </item>
-     <item row="0" column="4">
+     <item>
       <widget class="QFrame" name="frame_5">
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -483,7 +483,7 @@
          <string notr="true">font: 75 oblique 11pt &quot;DejaVu Sans Mono&quot;;</string>
         </property>
         <property name="text">
-         <string>Today</string>
+         <string>+4</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -491,7 +491,7 @@
        </widget>
       </widget>
      </item>
-     <item row="0" column="5">
+     <item>
       <widget class="QFrame" name="frame_6">
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -557,7 +557,7 @@
          <string notr="true">font: 75 oblique 11pt &quot;DejaVu Sans Mono&quot;;</string>
         </property>
         <property name="text">
-         <string>Today</string>
+         <string>+5</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -565,7 +565,7 @@
        </widget>
       </widget>
      </item>
-     <item row="0" column="6">
+     <item>
       <widget class="QFrame" name="frame_7">
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -631,7 +631,7 @@
          <string notr="true">font: 75 oblique 11pt &quot;DejaVu Sans Mono&quot;;</string>
         </property>
         <property name="text">
-         <string>Today</string>
+         <string>+6</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>

@@ -62,10 +62,21 @@ void MainWindow::getWeather(int idx){
         meteoSearcher.addSpecificParameters(this->cities[idx]);
         meteoSearcher.Get();
         this->meteoTiles = meteoSearcher.convertJsonResponseToMap();
+
         ui->currentCity->setText(QString::fromStdString(this->cities[idx].getInfos()));
         this->cities.clear();
         ui->cityCombo->clear();
         ui->searchBar->clear();
+        
+        QHBoxLayout *layout = ui->tilesLayout;
+        for (int i = 0; i < layout->count(); i++) {
+            QLayoutItem *item = layout->itemAt(i);
+            QWidget *widget = item->widget();
+
+            //find all the labels in the frame
+            QList<QLabel*> labels = widget->findChildren<QLabel*>();
+            cerr << labels.at(2)->text().toStdString() << endl;   
+        }
     }
     catch (FetchDataException &e) {
         cerr << e.what() << endl;
@@ -76,9 +87,11 @@ void MainWindow::getWeather(int idx){
         return ;
     }
     
-    for (auto meteo : meteoTiles){
-        cerr << meteo << endl;
-    }
+
+    //TODO for DEBUG, DELETE THIS
+    // for (auto meteo : meteoTiles){
+    //     cerr << meteo << endl;
+    // }
 }
 
 MainWindow::~MainWindow()
