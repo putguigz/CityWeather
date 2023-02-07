@@ -130,6 +130,29 @@ void	MeteoTile::calculateAverageTemperature(){
 	_temperature = (_minTemperature + _maxTemperature) / 2;
 }
 
+string MeteoTile::convertTemperature( float const &temperature ) const {
+	return (to_string(lroundf(temperature)) + "॰C");
+}
+
+string MeteoTile::convertPrecipitation( float const &precipitation ) const {
+	stringstream ss;
+
+	ss << precipitation << " mm";
+	return (ss.str());
+}
+
+MeteoTile::Metrics	MeteoTile::getMetrics( void ) const{
+	struct Metrics	metrics;
+
+	metrics.temperature = convertTemperature(_temperature);
+	metrics.minTemperature = convertTemperature(_minTemperature);
+	metrics.maxTemperature = convertTemperature(_maxTemperature);
+	metrics.precipitation = convertPrecipitation(_precipitation);
+	metrics.weatherCode = _weatherCode;
+	metrics.weatherReport = MeteoTile::weatherInterpretationCodes.at(_weatherCode);
+	return metrics;
+}
+
 
 // Stream operators
 std::ostream & operator<<(std::ostream &stream, const MeteoTile &object)

@@ -13,6 +13,37 @@ using json = nlohmann::json;
 
 using namespace std;
 
+const std::unordered_map<int, std::string> MainWindow::weatherIcons = {
+	{0,"../weather_icons/sunny.png"},
+	{1,"../weather_icons/partly_cloudy.png"},
+	{2,"../weather_icons/cloudy.png"},
+	{3,"../weather_icons/many_clouds.png"},
+	{45,"../weather_icons/fog.png"},
+	{48,"../weather_icons/fog.png"},
+	{51,"../weather_icons/heavy_rain.png"},
+	{53,"../weather_icons/heavy_rain.png"},
+	{55,"../weather_icons/heavy_rain.png"},
+	{56,"../weather_icons/heavy_rain.png"},
+	{57,"../weather_icons/heavy_rain.png"},
+	{61,"../weather_icons/rain.png"},
+	{63,"../weather_icons/rain.png"},
+	{65,"../weather_icons/rain.png"},
+	{66,"../weather_icons/rain.png"},
+	{67,"../weather_icons/rain.png"},
+	{71,"../weather_icons/snow.png"},
+	{73,"../weather_icons/snow.png"}, 
+	{75,"../weather_icons/snow.png"},
+	{77,"../weather_icons/snow.png"},
+	{80,"../weather_icons/rain.png"},
+	{81,"../weather_icons/rain.png"},
+	{82,"../weather_icons/rain.png"},
+	{85,"../weather_icons/rain.png"},
+	{86,"../weather_icons/snow.png"},
+	{95,"../weather_icons/thunder.png"},
+	{96,"../weather_icons/thunder.png"},
+	{99,"../weather_icons/thunder.png"}
+};
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -81,20 +112,34 @@ void    MainWindow::getApiMeteo( City const &city ){
         this->meteoTiles = meteoSearcher.convertJsonResponseToMap();
 }
 
+string  MainWindow::aggregateReport( MeteoTile::Metrics const & metrics) const {
+    stringstream report;
+
+    cerr << "metrics.precipitation: " << metrics.precipitation << endl;
+
+    report << "max: " << metrics.maxTemperature << "\n";
+    report << "min: " << metrics.minTemperature << "\n";
+    report << "rain: " << metrics.precipitation << "\n";
+    report << metrics.weatherReport;
+    return (report.str());
+}
+
 void    MainWindow::populateMeteoTiles( void ){
+        //This gives a array of layout, there are 7 layouts in the array
         QHBoxLayout *layout = ui->tilesLayout;
         for (int i = 0; i < layout->count(); i++) {
+            //this returns the LayoutItem at the index i
             QLayoutItem *item = layout->itemAt(i);
+            //this return the widget of the LayoutItem
             QWidget *widget = item->widget();
 
             QList<QLabel*> labels = widget->findChildren<QLabel*>();
-            labels.at(0)->setText(QString::fromStdString("0"));
-            labels.at(1)->setText(QString::fromStdString("1"));
-            labels.at(2)->setText(QString::fromStdString("2"));
-            labels.at(3)->setText(QString::fromStdString("3"));
-            // cerr << labels.at(2)->text().toStdString() << endl;
-            // cerr << labels.at(1)->text().toStdString() << endl;   
-            // cerr << labels.at(0)->text().toStdString() << endl;  
+
+            MeteoTile::Metrics metrics = this->meteoTiles[i].getMetrics();
+
+            labels.at(1)->setPixmap(QPixmap(QString::fromStdString(MainWindow::weatherIcons.at(metrics.weatherCode)), "png"));
+            labels.at(2)->setText(QString::fromStdString(metrics.temperature));
+            labels.at(3)->setText(QString::fromStdString(aggregateReport(metrics))); 
         }
 }
 

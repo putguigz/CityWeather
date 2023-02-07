@@ -16,6 +16,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    static const std::unordered_map<int, std::string>    weatherIcons;
+
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
@@ -30,6 +32,7 @@ private:
     void    proceedSearchEntry(int index);
     void    getApiMeteo( City const &city );
     void    populateMeteoTiles( void );
+    string  aggregateReport( MeteoTile::Metrics const & metrics) const;
     
 
     QString                 inputCity;

@@ -3,14 +3,24 @@
 
 # include <iostream>
 # include <string>
+# include <sstream>
 # include <unordered_map>
-
+# include <cmath>
 using namespace std;
 
 class MeteoTile
 {
 	public:
 		static const std::unordered_map<int, string> weatherInterpretationCodes;
+
+		struct	Metrics{
+			string	temperature;
+			string	minTemperature;
+			string	maxTemperature;
+			string	precipitation;
+			int		weatherCode;
+			string	weatherReport;
+		};
 
 		// Constructors
 		MeteoTile();
@@ -39,6 +49,8 @@ class MeteoTile
 		int		getWeatherCode() const;
 		void	setWeatherCode(int weatherCode);
 
+		Metrics	getMetrics() const;
+
 	private:
 		float	_temperature;
 		float	_minTemperature;
@@ -46,7 +58,9 @@ class MeteoTile
 		float	_precipitation;
 		int		_weatherCode;
 
-		void	calculateAverageTemperature();
+		string	convertTemperature( float const &temperature ) const;
+		string	convertPrecipitation( float const &precipitation ) const;
+		void	calculateAverageTemperature( void );
 };
 
 // Stream operators
