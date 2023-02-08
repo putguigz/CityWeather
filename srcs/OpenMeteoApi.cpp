@@ -13,10 +13,16 @@ const char *OpenMeteoApi::dailyFields[DAILYFIELDS_SIZE] = {
         "weathercode"
         };
 
-OpenMeteoApi::OpenMeteoApi( void ) : ApiRequester(OPENMETEO_URL){}
-OpenMeteoApi::OpenMeteoApi( OpenMeteoApi const & src ) : ApiRequester(src){}
+OpenMeteoApi::OpenMeteoApi( void ) : ApiRequester(OPENMETEO_URL){
+    setEncodeParameter(false);
+}
+OpenMeteoApi::OpenMeteoApi( OpenMeteoApi const & src ) : ApiRequester(src){
+    setEncodeParameter(false);
+}
+
 OpenMeteoApi::OpenMeteoApi( City const &city ) : ApiRequester(OPENMETEO_URL){
     addSpecificParameters(city);
+    setEncodeParameter(false);
 }
 OpenMeteoApi::~OpenMeteoApi( void ){}
 

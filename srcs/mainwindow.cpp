@@ -74,7 +74,7 @@ void MainWindow::searchCity(){
     }
 
     for (auto city : this->cities)
-        ui->cityCombo->addItem(QString::fromStdString(city.getInfos()));
+        ui->cityCombo->addItem(QString::fromUtf8(city.getInfos().c_str()));
     ui->cityCombo->showPopup();
 }
 
@@ -89,7 +89,7 @@ void MainWindow::registerText(){
 void    MainWindow::setCurrentCityTitle(int index){
     QString cityNameRegionCountry;
     
-    cityNameRegionCountry = QString::fromStdString(this->cities[index].getInfos());
+    cityNameRegionCountry = QString::fromUtf8(this->cities[index].getInfos().c_str());
     ui->currentCity->setText(cityNameRegionCountry);
 }
 
@@ -112,7 +112,7 @@ void    MainWindow::getApiMeteo( City const &city ){
         this->meteoTiles = meteoSearcher.convertJsonResponseToMap();
 }
 
-string  MainWindow::aggregateReport( MeteoTile::Metrics const & metrics) const {
+string  MainWindow::aggregateMetrics( MeteoTile::Metrics const & metrics) const {
     stringstream report;
 
     cerr << "metrics.precipitation: " << metrics.precipitation << endl;
@@ -120,7 +120,6 @@ string  MainWindow::aggregateReport( MeteoTile::Metrics const & metrics) const {
     report << "max: " << metrics.maxTemperature << "\n";
     report << "min: " << metrics.minTemperature << "\n";
     report << "rain: " << metrics.precipitation << "\n";
-    report << metrics.weatherReport;
     return (report.str());
 }
 
@@ -139,7 +138,8 @@ void    MainWindow::populateMeteoTiles( void ){
 
             labels.at(1)->setPixmap(QPixmap(QString::fromStdString(MainWindow::weatherIcons.at(metrics.weatherCode)), "png"));
             labels.at(2)->setText(QString::fromStdString(metrics.temperature));
-            labels.at(3)->setText(QString::fromStdString(aggregateReport(metrics))); 
+            labels.at(3)->setText(QString::fromStdString(aggregateMetrics(metrics)));
+            labels.at(4)->setText(QString::fromStdString(metrics.weatherReport));
         }
 }
 

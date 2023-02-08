@@ -32,7 +32,7 @@ private:
     void    proceedSearchEntry(int index);
     void    getApiMeteo( City const &city );
     void    populateMeteoTiles( void );
-    string  aggregateReport( MeteoTile::Metrics const & metrics) const;
+    string  aggregateMetrics( MeteoTile::Metrics const & metrics) const;
     
 
     QString                 inputCity;

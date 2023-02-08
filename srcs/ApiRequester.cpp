@@ -6,16 +6,16 @@
 
 // Constructors
 
-ApiRequester::ApiRequester( void )
+ApiRequester::ApiRequester( void ) : _encodeParameter(true)
 {  
 }
 
-ApiRequester::ApiRequester( const char url[] )
+ApiRequester::ApiRequester( const char url[] ) : _encodeParameter(true)
 {
     _url = string(url);
 }
 
-ApiRequester::ApiRequester( string const &url) : _url(url)
+ApiRequester::ApiRequester( string const &url) : _url(url), _encodeParameter(true)
 {
 }
 
@@ -56,6 +56,14 @@ void    ApiRequester::setQueryParameters(std::map<string, string> const & newPar
     _queryParameters = newParam;
 }
 
+bool const  &ApiRequester::getEncodeParameter( void ) const{
+    return _encodeParameter;
+}
+
+void		ApiRequester::setEncodeParameter( bool parameter ){
+    _encodeParameter = parameter;
+}
+
 void    ApiRequester::pushQueryParameter(string key, string value){
     _queryParameters.insert(std::pair<string, string>(key, value));
 }
@@ -73,7 +81,7 @@ cpr::Parameters ApiRequester::generateParameters( void ) const{
 string const &ApiRequester::Get( void ) {
     cpr::Response   response;
     cpr::Parameters parameters = generateParameters();
-    parameters.encode = false;
+    parameters.encode = _encodeParameter;
     
     response = cpr::Get(cpr::Url{_url}, parameters);
     if (response.status_code >= 400)
@@ -90,6 +98,7 @@ ApiRequester & ApiRequester::operator=(const ApiRequester &cpy)
         _url = cpy.getUrl();
         _response_body = cpy.getResponseBody();
         _queryParameters = cpy.getQueryParameters();
+        _encodeParameter = cpy.getEncodeParameter();
     }
 	return *this;
 }

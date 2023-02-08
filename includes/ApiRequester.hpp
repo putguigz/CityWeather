@@ -25,11 +25,16 @@ class ApiRequester
 		
 		string const						&getUrl( void ) const;
 		void								setUrl( string newUrl );
+
 		string const						&getResponseBody( void ) const;
 		void								setResponseBody( string newUrl );
+
 		map<string, string> const			&getQueryParameters(void) const;
 		void								setQueryParameters(map<string, string> const & newParam);
-
+		
+		bool const							&getEncodeParameter( void ) const;
+		void								setEncodeParameter( bool parameter );
+		
 		string const 	&Get( void );
 
 	protected:
@@ -38,9 +43,10 @@ class ApiRequester
 	private:
 		string						_url;
 		string						_response_body;
+		bool						_encodeParameter;
 		map<string, string>			_queryParameters;
-		cpr::Parameters 			generateParameters( void ) const;
 
+		cpr::Parameters 			generateParameters( void ) const;
 };
 
 #endif
