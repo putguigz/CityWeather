@@ -13,4 +13,3 @@ if ! [[ -e $program ]]; then
     cmake .. 2>/dev/null
     make -j ./CityWeather 2>/dev/null
 fi
-
