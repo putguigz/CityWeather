@@ -1,11 +1,9 @@
 #include <sstream>
-#include <cpr/cpr.h>
 
 #include "ApiRequester.hpp"
 #include "FetchDataException.hpp"
 
 // Constructors
-
 ApiRequester::ApiRequester( void ) : _encodeParameter(true)
 {  
 }
@@ -64,7 +62,7 @@ void		ApiRequester::setEncodeParameter( bool parameter ){
     _encodeParameter = parameter;
 }
 
-void    ApiRequester::pushQueryParameter(string key, string value){
+void    ApiRequester::addQueryParameter(string key, string value){
     _queryParameters.insert(std::pair<string, string>(key, value));
 }
 

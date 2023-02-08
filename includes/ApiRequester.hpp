@@ -10,7 +10,7 @@ using namespace std;
 
 typedef map<string, string>::const_iterator paramIterator;
 
-// This is a Base Class for any ApiClass
+// This is a Base Class for any API-Class
 class ApiRequester
 {
 	public:
@@ -35,17 +35,24 @@ class ApiRequester
 		bool const							&getEncodeParameter( void ) const;
 		void								setEncodeParameter( bool parameter );
 		
+
+		// Emits HTTP GET to the _url with _queryParameters as parameters
 		string const 	&Get( void );
 
-	protected:
-		void			pushQueryParameter(string key, string value);
+		// Allows user hand adding of parameters
+		void			addQueryParameter(string key, string value);
 
 	private:
+		// URL of the target API
 		string						_url;
+		// Response body of the last request
 		string						_response_body;
+		// Choose to encode or not the parameters. Automatically set to true
 		bool						_encodeParameter;
+		// Parameters to be sent with the request
 		map<string, string>			_queryParameters;
 
+		// Generates request-needed cpr::Parameters from _queryParameters
 		cpr::Parameters 			generateParameters( void ) const;
 };
 

@@ -3,16 +3,16 @@
 
 # include <iostream>
 # include <string>
-# include <sstream>
 # include <unordered_map>
-# include <cmath>
 using namespace std;
 
 class MeteoTile
 {
 	public:
+		// Weather codes and their interpretation in english language
 		static const std::unordered_map<int, string> weatherInterpretationCodes;
 
+		//Struct used when sending data formated data to front-end
 		struct	Metrics{
 			string	temperature;
 			string	minTemperature;
@@ -58,8 +58,13 @@ class MeteoTile
 		float	_precipitation;
 		int		_weatherCode;
 
+		// Converts temperature with the right number of decimals + '॰C'
 		string	convertTemperature( float const &temperature ) const;
+
+		// Converts precipitation with the right number of decimals + 'mm'
 		string	convertPrecipitation( float const &precipitation ) const;
+
+		// Calculate the average temperature and stores it in _temperature
 		void	calculateAverageTemperature( void );
 };
 

@@ -1,10 +1,15 @@
 #include "GUIException.hpp"
+#include <sstream>
 
 GUIException::GUIException( void ){
 }
 
-GUIException::GUIException( std::string errorMessage) : _errorMessage(errorMessage)
+GUIException::GUIException( std::string errorMessage)
 {
+    std::stringstream tmp;
+    
+    tmp << "GUI ERROR: " << errorMessage;
+    _errorMessage = tmp.str();
 }
 
 GUIException::~GUIException(){

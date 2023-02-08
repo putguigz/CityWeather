@@ -1,3 +1,5 @@
+#include <sstream>
+
 #include "FetchDataException.hpp"
 
 FetchDataException::FetchDataException( void ){

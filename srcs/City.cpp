@@ -1,4 +1,5 @@
 #include "City.hpp"
+#include <nlohmann/json.hpp>
 
 // Constructors
 City::City() : _latitude(0), _longitude(0){

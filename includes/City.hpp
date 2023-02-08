@@ -4,7 +4,6 @@
 # include <iostream>
 # include <string>
 # include <vector>
-# include <nlohmann/json.hpp>
 
 using namespace std;
 
@@ -41,15 +40,16 @@ class City
 		string getTimezone() const;
 		void setTimezone(string timezone);
 		
+		// This send back a string with all the informations about the city, formated for a ComboBox
 		string getInfos() const;
 
 	private:
-		string _name;
-		string _locality;
-		string _country;
-		float _latitude;
-		float _longitude;
-		string _timezone;
+		string	_name;
+		string	_locality;
+		string	_country;
+		float	_latitude;
+		float	_longitude;
+		string	_timezone;
 };
 
 typedef std::vector<City>::const_iterator citiesIterator;

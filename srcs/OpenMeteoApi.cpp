@@ -1,11 +1,13 @@
 #include <nlohmann/json.hpp>
-#include "OpenMeteoApi.hpp"
+
 #include "Utils.hpp"
+#include "OpenMeteoApi.hpp"
 
 using json = nlohmann::json;
 
-/*please, change DAILYFIELDS_SIZE in .hpp if you add 
-fields to dailyFields*/
+/* This allows easy setting of the daily fields to request */ 
+/* if you add new fields, modify accordingly DAILYFIELDS_SIZE in OpenMeteoApi.hpp */ 
+/* "aggregateDailyFields()" will automatically do the rest*/
 const char *OpenMeteoApi::dailyFields[DAILYFIELDS_SIZE] = {       
         "temperature_2m_min",
         "temperature_2m_max",
@@ -13,6 +15,8 @@ const char *OpenMeteoApi::dailyFields[DAILYFIELDS_SIZE] = {
         "weathercode"
         };
 
+/* Sets automatically the url */
+/* Encoding is disabled to allow city names with spaces or accents */
 OpenMeteoApi::OpenMeteoApi( void ) : ApiRequester(OPENMETEO_URL){
     setEncodeParameter(false);
 }
@@ -20,6 +24,7 @@ OpenMeteoApi::OpenMeteoApi( OpenMeteoApi const & src ) : ApiRequester(src){
     setEncodeParameter(false);
 }
 
+/* Instanciates with a City object */
 OpenMeteoApi::OpenMeteoApi( City const &city ) : ApiRequester(OPENMETEO_URL){
     addSpecificParameters(city);
     setEncodeParameter(false);
@@ -31,11 +36,12 @@ OpenMeteoApi &OpenMeteoApi::operator=(OpenMeteoApi const & src){
     return *this;
 }
 
+// This function is used to add OpenMeteo-specific parameters to the request
 void OpenMeteoApi::addSpecificParameters(City const &city){
-    this->pushQueryParameter("latitude", to_string(city.getLatitude()));
-    this->pushQueryParameter("longitude", to_string(city.getLongitude()));
-    this->pushQueryParameter("timezone", city.getTimezone());
-    this->pushQueryParameter("daily", aggregateDailyFields());
+    this->addQueryParameter("latitude", to_string(city.getLatitude()));
+    this->addQueryParameter("longitude", to_string(city.getLongitude()));
+    this->addQueryParameter("timezone", city.getTimezone());
+    this->addQueryParameter("daily", aggregateDailyFields());
 }
 
 std::string OpenMeteoApi::aggregateDailyFields( void ){
@@ -49,6 +55,11 @@ std::string OpenMeteoApi::aggregateDailyFields( void ){
     return aggregatedDailyField;
 }
 
+// This parse and gets data from the json response
+// OpenMeteoAPI is a bit different from the other APIs for daily forecasts
+// day {today, tomorrow, day after tomorrow, ...}
+// temperature_2m_min { today, tomorrow, day after tomorrow, ...}
+// ...
 std::vector<MeteoTile>  OpenMeteoApi::convertJsonResponseToMap( void ) {
     std::vector<MeteoTile> sevenDaysMeteo(7);
 

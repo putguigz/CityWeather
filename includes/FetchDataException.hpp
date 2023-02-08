@@ -4,7 +4,6 @@
 # include <exception>
 # include <cpr/cpr.h>
 # include <string>
-# include <sstream>
 
 class FetchDataException : public std::exception
 {

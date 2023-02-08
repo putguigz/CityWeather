@@ -3,7 +3,6 @@
 
 # include <exception>
 # include <string>
-# include <sstream>
 
 class GUIException : public std::exception
 {
