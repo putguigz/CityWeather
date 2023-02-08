@@ -51,5 +51,5 @@ target_link_libraries( ${PROJECT_NAME} PRIVATE Qt5::Widgets)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
-target_compile_options( ${PROJECT_NAME} PRIVATE -Wall -Wextra -Werror)
+target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Werror)
 

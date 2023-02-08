@@ -4,23 +4,13 @@ RED="\e[31m"
 GREEN="\e[32m"
 RESET="\e[0m"
 
-program=./CityWeather
-
-# Libraries are imported through Cmake but GTK
-# might need installation through pkg dependency
-# sudo dnf install gtkmm4.0-devel
+program=./build/CityWeather
 
 if ! [[ -e $program ]]; then
-    echo -e "Compiling With \e[33mMakefile...\e[0m"
-    make  1>/dev/null
+    echo -e "\e[33mCmake is running...\e[0m"
+    mkdir build > /dev/null 2>&1
+    cd build 
+    cmake .. 2>/dev/null
+    make -j ./CityWeather 2>/dev/null
 fi
-
-valgrind --tool=memcheck --leak-check=yes --error-exitcode=1 $program 2>/dev/null
-
-if [[ $? -eq 1 ]]; then
-    echo -e "There is some ${RED}leaks${RESET}."
-else
-    echo -e "There is ${GREEN}0${RESET} leaks."
-fi
-
 

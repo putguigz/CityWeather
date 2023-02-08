@@ -2,6 +2,10 @@
 
 This project is called CityWeather and as its name suggests, it shows you the meteo for the next 7 days, including the current one. It has been coded with C++ and includes some external libraries
 
+<p align="center">
+<img src="datas_readme/city_weather.gif" width="600" centered="true" />
+</p>
+
 ***
 
 # Requirements
@@ -9,12 +13,21 @@ This project is called CityWeather and as its name suggests, it shows you the me
 - Linux
 - Cmake
 - make
+- qt5
 
 ***
 
 # Installation
 
 The project uses a Cmake for installation. All the needed libraries will be installed, and some of them are imported over the internet & GitHub, so it might take a little while.
+
+## Pre-requisite
+
+This README assume that you already installed or have qt installed on your computer. 
+
+As Qt can weight several GigaOctets, when installed through official installer, I prefered to let the user choose to download it, and where from, and include it in my script or in a Cmake.
+
+I would suggest using a light version, such as the one available on your official pkg manager.
 
 ## CMake
 
@@ -24,17 +37,19 @@ Then, here are a few commands to compile the project :
 ```bash
 mkdir build
 cd build
-cmake .. .
+cmake ..
 make -j
 ```
 
 ## Install Script
 
-If you prefer, you can just launch this little script who will install the binary for you and place it in the `build` folder.  Launch that command from the current directory.
+If you prefer, you can just launch this little script who will install the binary for you and place it in the `build` folder.  Launch that command from inside the build directory.
 
 The command is :
 ``` bash
 ./quick_install.sh
+cd build
+./CityWeather
 ```
 
 ***
@@ -77,4 +92,29 @@ In this case, I created a base class `ApiRequester` to emit simple requests, and
 
 The `Get()` method is encapsulated in this class and everything is happening behind closed doors. I also included methods that allows to convert the stored responses in easily usable objects called `convertJsonResponseToMap`.
 
-The result is not as polymorphic as I expected, but it'll do for now
+The result is not as polymorphic as I expected, but it'll do for now.
+
+# Frontend
+
+## gtkmm
+It all started with gtkmm + Glade for UI...but it didn't do anything more than make me lose a full day.. Gtkmm is just C++ bindings of C-Gtk so it is pretty hard to use in an OOP way that allows to preserve good architecture. The documentation is pretty bad, no good tutorial...
+
+So I switched to ...🌟 Qt 🌟 !
+
+## QT
+Easy to use and learn, took me only 1 day to have my graphical interface binded with my datas ! Thanks to their extremly rich documentation + coverture on stackoverflow, youtube, etc... I designed the ui with QtCreator and binded the objects through pointers then populated them with data. The entire UI holds in 170 lines of code. Thanks QT !
+
+# What I learned or improved
+
+- Cmake
+- better OOP programming
+- c++17
+- librairies installation from cmake
+
+# Licences
+
+- libcpr/cpr : https://github.com/libcpr/cpr
+- nlohmann : https://github.com/nlohmann/json
+- qt : https://www.qt.io/
+- icons : https://www.flaticon.com/fr/auteurs/mnauliady, 
+https://www.flaticon.com/fr/auteurs/karlop19
