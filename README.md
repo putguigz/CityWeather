@@ -21,13 +21,13 @@ This project is called CityWeather and as its name suggests, it shows you the me
 
 The project uses a Cmake for installation. All the needed libraries will be installed, and some of them are imported over the internet & GitHub, so it might take a little while.
 
-## Pre-requisite
+## About Qt
 
-This README assume that you already installed or have qt installed on your computer. 
+Qt is needed to run this program. There are tree ways for installing it:
 
-As Qt can weight several GigaOctets, when installed through official installer, I prefered to let the user choose to download it, and where from, and include it in my script or in a Cmake.
-
-I would suggest using a light version, such as the one available on your official pkg manager.
+1. your package manager (`brew`, `apt-get`, `dnf`,...)
+2. Qt wizard installer ([Qt Installer](https://www.qt.io/download-qt-installer?hsCtaTracking=99d9dd4f-5681-48d2-b096-470725510d34%7C074ddad0-fdef-4e53-8aa8-5e8a876d6ab4))
+3. Downloading and building from sources ([Qt Building from Sources](https://wiki.qt.io/Building_Qt_6_from_Git))
 
 ## CMake
 

@@ -58,7 +58,7 @@ class MeteoTile
 		float	_precipitation;
 		int		_weatherCode;
 
-		// Converts temperature with the right number of decimals + '॰C'
+		// Converts temperature with the right number of decimals + '°C'
 		string	convertTemperature( float const &temperature ) const;
 
 		// Converts precipitation with the right number of decimals + 'mm'
