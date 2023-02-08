@@ -60,7 +60,7 @@ I used **several** libraries for this project.
 
 Just installing them and compiling them from the sources was a challenge, since I had never come across a Cmake.
 
-**Conan** and  **vcpkg** were both usable options, but configuration was time consumming, and I prefered to learn simple makefiles instead.
+**Conan** and  **vcpkg** were both usable options, but configuration was time consumming, and I prefered to learn simple cmakes instead.
 
 I used : 
 - __*libcpr*__ to generate simple HTTP requests. It is well documented and highly maintained on GitHub. Feel free to check : https://github.com/libcpr/cpr
@@ -72,7 +72,7 @@ I used :
 
 The 2 A.P.Is used are both part of the same provider. They are free and great to use, and can be found at https://open-meteo.com/. No API key is required and the doc is plain simple. Easy.
 
-To make my site run, I consume 2 A.P.Is : 
+To make my app run, I consume 2 A.P.Is : 
 
 1. *Open-Meteo* **GeoCoding API**, that allows me to convert a city name into latitude and longitude datas.
 2. *Open-Meteo* **WeatherForecast API**, that will use my previously acquired datas of latitude and longitude to obtains meteo metrics for the next 7 days.
@@ -84,25 +84,33 @@ To make my site run, I consume 2 A.P.Is :
 I tried to heavily implement and use OOP. 
 
 Let's take for example the classes :
- 1. ApiRequester
- 2. GeoCodeApi
- 3. OpenMeteoApi
+ - ApiRequester
+ - GeoCodeApi
+ - OpenMeteoApi
 
-In this case, I created a base class `ApiRequester` to emit simple requests, and I made both class `GeoCodeApi` and `OpenMeteoApi` inherit from this class and implement their own way of managing parameters of the URL with method `addSpecificParameters()`. 
+For these **classes**, I :
+1. created a base class `ApiRequester` to emit simple requests
+2. made both class `GeoCodeApi` and `OpenMeteoApi` **inherit** from this class
+3. implement their own way of managing parameters of the URL with method `addSpecificParameters()`. 
 
-The `Get()` method is encapsulated in this class and everything is happening behind closed doors. I also included methods that allows to convert the stored responses in easily usable objects called `convertJsonResponseToMap`.
+The `Get()` method is encapsulated in `ApiRequester` class and everything is happening behind closed doors. 
 
-The result is not as polymorphic as I expected, but it'll do for now.
+I also included methods that allows to convert the stored responses in easily usable objects called `convertJsonResponseToMap`.
+
 
 # Frontend
 
 ## gtkmm
-It all started with gtkmm + Glade for UI...but it didn't do anything more than make me lose a full day.. Gtkmm is just C++ bindings of C-Gtk so it is pretty hard to use in an OOP way that allows to preserve good architecture. The documentation is pretty bad, no good tutorial...
+It all started with gtkmm and Glade for UI...but it didn't do anything more than make me lose a full day...
+
+ Gtkmm is just C++ bindings of C-Gtk so it is pretty hard to use in an OOP way that allows to preserve good architecture. The documentation is pretty bad, no good tutorial...
 
 So I switched to ...🌟 Qt 🌟 !
 
 ## QT
-Easy to use and learn, took me only 1 day to have my graphical interface binded with my datas ! Thanks to their extremly rich documentation + coverture on stackoverflow, youtube, etc... I designed the ui with QtCreator and binded the objects through pointers then populated them with data. The entire UI holds in 170 lines of code. Thanks QT !
+Easy to use and learn, took me less than a day to have a graphical interface binded with my datas ! 
+
+Thanks to their extremely rich documentation (+ coverture on stackoverflow, youtube,...) I designed the ui with QtCreator and binded the objects through pointers then populated them with data. The entire UI holds in 170 lines of code. Thanks QT !
 
 # What I learned or improved
 
@@ -110,6 +118,7 @@ Easy to use and learn, took me only 1 day to have my graphical interface binded 
 - better OOP programming
 - c++17
 - librairies installation from cmake
+- and more...
 
 # Licences
 
