@@ -60,13 +60,12 @@ std::string OpenMeteoApi::aggregateDailyFields( void ){
 // day {today, tomorrow, day after tomorrow, ...}
 // temperature_2m_min { today, tomorrow, day after tomorrow, ...}
 // ...
+// This function will throw an exception if the json response is not valid
 std::vector<MeteoTile>  OpenMeteoApi::convertJsonResponseToMap( void ) {
     std::vector<MeteoTile> sevenDaysMeteo(7);
 
-    //TODO if json throws...do something
     json parsedJson = json::parse(this->getResponseBody());
     
-    //TODO protect if daily doesn't exist
     json sevenDayForecast = parsedJson.at("daily");
     
     int day = 0;

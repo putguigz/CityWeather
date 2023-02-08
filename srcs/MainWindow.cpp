@@ -85,7 +85,6 @@ void    MainWindow::proceedSearchEntry(int index){
 }
 
 void    MainWindow::getApiMeteo( City const &city ){
-        //TODO : Add a try catch block
         OpenMeteoApi meteoSearcher(city);
 
         meteoSearcher.Get();
@@ -125,7 +124,7 @@ string MainWindow::searchIcon( int index ){
 /* │      ├─ QLabel                 */
 /* │      ├─ QLabel                 */
 /* │      └─ QLabel                 */
-// TODO Throw Catch
+/* This function will throw if a pointer is NULL*/
 void    MainWindow::editMeteoTilesTiles( void ){
     QHBoxLayout* layout = ui->tilesLayout;
     CHECK_NULL(layout);

@@ -144,7 +144,6 @@ std::ostream & operator<<(std::ostream &stream, const MeteoTile &object)
 	return stream;
 }
 
-//TODO add a negative value for bad or unknown weathercode
 const std::unordered_map<int, string> MeteoTile::weatherInterpretationCodes = {
 	{0,"Clear sky"},
 	{1,"Mainly clear"},
