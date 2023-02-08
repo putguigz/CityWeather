@@ -11,7 +11,7 @@
 // for convenience
 using namespace std;
 
-#include "mainwindow.h"
+#include "MainWindow.hpp"
 
 #include <QApplication>
 

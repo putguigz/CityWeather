@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "mainwindow.h"
+#include "MainWindow.hpp"
 #include "./ui_mainwindow.h"
 
 #include "GeoCodeApi.hpp"
@@ -55,12 +55,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->cityCombo, QOverload<int>::of(&QComboBox::activated), this, [=](int index){ this->getWeather(index); });
 }
 
-void MainWindow::searchCity(){
-    cerr << this->inputCity.toStdString() << endl;
-    
+void MainWindow::searchCity(){    
     //TODO : Add a try catch block
     try {
-        GeoCodeApi citySearcher(this->inputCity.toStdString());
+        std::string userInput = this->inputCity.trimmed().toStdString();
+        
+        GeoCodeApi citySearcher(userInput);
         citySearcher.Get();
         this->cities = citySearcher.convertJsonResponseToMap();
     }

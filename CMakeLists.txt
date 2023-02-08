@@ -21,7 +21,7 @@ set(SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/MeteoTile.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/Utils.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/GUIException.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/srcs/mainwindow.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/srcs/MainWindow.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/srcs/mainwindow.ui"
     )
 
